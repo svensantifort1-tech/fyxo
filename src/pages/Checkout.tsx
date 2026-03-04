@@ -43,7 +43,6 @@ const packages = {
 };
 
 const contactOptions = [
-  { value: "bellen", label: "Bellen", icon: Phone },
   { value: "whatsapp", label: "WhatsApp", icon: MessageCircle },
   { value: "email", label: "E-mail", icon: Mail },
 ];
@@ -75,7 +74,7 @@ const Checkout = () => {
     email: "",
     website: "",
     doel: "",
-    contact: "bellen",
+    contact: "whatsapp",
   });
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
