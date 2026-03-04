@@ -93,7 +93,7 @@ const Prijzen = () => (
                   className="mt-8 w-full"
                   asChild
                 >
-                  <Link to="/contact">
+                  <Link to={`/checkout?pakket=${pkg.name === "Standaard" ? "standaard" : "premium"}`}>
                     Kies {pkg.name}
                     <ArrowRight className="w-4 h-4" />
                   </Link>
