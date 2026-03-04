@@ -3,45 +3,49 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import AnimatedSection from "@/components/AnimatedSection";
 import {
-  Shield,
-  Eye,
-  Headphones,
   Check,
   Paintbrush,
   Gauge,
   Server,
   ChevronDown,
   ArrowLeft,
+  Clock,
+  MessageCircle,
+  Users,
+  Phone,
+  Mail,
+  Globe,
 } from "lucide-react";
 
 const packages = {
   standaard: {
     name: "Standaard",
-    oneTime: 300,
-    monthly: null,
+    price: "€300 eenmalig",
+    description: "Volledige eigendom van je website",
     features: [
       { icon: Paintbrush, label: "Handgemaakt design" },
-      { icon: Gauge, label: "Google PageSpeed Optimalisatie" },
+      { icon: Gauge, label: "Google PageSpeed 90+ score" },
     ],
   },
   premium: {
     name: "Premium",
-    oneTime: 200,
-    monthly: 50,
+    price: "€200 eenmalig + €50/maand",
+    description: "Volledig ontzorgd met hosting & onderhoud",
     features: [
       { icon: Paintbrush, label: "Handgemaakt design" },
-      { icon: Gauge, label: "Google PageSpeed Optimalisatie" },
-      { icon: Server, label: "Hosting inbegrepen" },
+      { icon: Gauge, label: "Google PageSpeed 90+ score" },
+      { icon: Server, label: "Hosting & onderhoud inbegrepen" },
     ],
   },
 };
 
-const trustBadges = [
-  { icon: Shield, label: "Veilig betalen via iDEAL" },
-  { icon: Eye, label: "Geen verborgen kosten" },
-  { icon: Headphones, label: "Persoonlijke support" },
+const contactOptions = [
+  { value: "bellen", label: "Bellen", icon: Phone },
+  { value: "whatsapp", label: "WhatsApp", icon: MessageCircle },
+  { value: "email", label: "E-mail", icon: Mail },
 ];
 
 const faqs = [
@@ -54,8 +58,8 @@ const faqs = [
     a: "Ja, je kunt altijd upgraden naar het Premium pakket. Neem contact op en wij regelen de overstap.",
   },
   {
-    q: "Wat als ik niet tevreden ben?",
-    a: "Wij werken nauw met je samen tot je 100% tevreden bent. Pas na jouw goedkeuring wordt de site opgeleverd.",
+    q: "Wanneer ontvang ik de factuur?",
+    a: "Pas na ons kennismakingsgesprek sturen we de factuur. Je betaalt dus nooit voordat we jouw wensen hebben besproken.",
   },
 ];
 
@@ -63,35 +67,35 @@ const Checkout = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const pakketParam = searchParams.get("pakket");
-  const pkg =
-    pakketParam === "standaard" ? packages.standaard : packages.premium;
+  const pkg = pakketParam === "standaard" ? packages.standaard : packages.premium;
 
   const [form, setForm] = useState({
-    bedrijfsnaam: "",
-    kvk: "",
-    email: "",
     naam: "",
-    adres: "",
-    postcode: "",
-    plaats: "",
+    bedrijfsnaam: "",
+    email: "",
+    website: "",
+    doel: "",
+    contact: "bellen",
   });
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Future: integrate payment
+    // Future: send to backend
   };
 
   return (
     <main className="min-h-screen bg-background">
       {/* Minimal top bar */}
       <div className="border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <button
             onClick={() => navigate("/prijzen")}
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -105,217 +109,206 @@ const Checkout = () => {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-12 md:py-20">
+      <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
+        {/* Package confirmation */}
         <AnimatedSection>
-          <h1 className="text-3xl md:text-4xl font-heading font-bold tracking-tight text-center">
-            Bevestig je bestelling
-          </h1>
-          <p className="text-muted-foreground text-center mt-3 max-w-lg mx-auto">
-            Je bent bijna klaar. Controleer je gegevens en rond je bestelling
-            af.
-          </p>
+          <div className="text-center">
+            <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <Check className="w-4 h-4" />
+              Je hebt gekozen voor: {pkg.name}
+            </div>
+            <h1 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">
+              Klaar voor een website met een{" "}
+              <span className="text-gradient">90+ PageSpeed score?</span>
+            </h1>
+          </div>
         </AnimatedSection>
 
-        <div className="mt-12 grid lg:grid-cols-5 gap-10 lg:gap-14">
-          {/* Form – left side */}
-          <div className="lg:col-span-3 order-2 lg:order-1">
-            <AnimatedSection delay={0.1}>
-              <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Bedrijfsgegevens */}
-                <div>
-                  <h2 className="text-lg font-heading font-semibold mb-4">
-                    Bedrijfsgegevens
-                  </h2>
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="bedrijfsnaam">Bedrijfsnaam *</Label>
-                      <Input
-                        id="bedrijfsnaam"
-                        name="bedrijfsnaam"
-                        value={form.bedrijfsnaam}
-                        onChange={handleChange}
-                        required
-                        placeholder="Jouw Bedrijf B.V."
-                        className="mt-1.5"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="kvk">
-                        KVK-nummer{" "}
-                        <span className="text-muted-foreground font-normal">
-                          (optioneel)
-                        </span>
-                      </Label>
-                      <Input
-                        id="kvk"
-                        name="kvk"
-                        value={form.kvk}
-                        onChange={handleChange}
-                        placeholder="12345678"
-                        className="mt-1.5"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="naam">Volledige naam *</Label>
-                      <Input
-                        id="naam"
-                        name="naam"
-                        value={form.naam}
-                        onChange={handleChange}
-                        required
-                        placeholder="Jan de Vries"
-                        className="mt-1.5"
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="email">E-mailadres *</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        required
-                        placeholder="jan@bedrijf.nl"
-                        className="mt-1.5"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Factuuradres */}
-                <div>
-                  <h2 className="text-lg font-heading font-semibold mb-4">
-                    Factuuradres
-                  </h2>
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="adres">Straat + huisnummer *</Label>
-                      <Input
-                        id="adres"
-                        name="adres"
-                        value={form.adres}
-                        onChange={handleChange}
-                        required
-                        placeholder="Keizersgracht 100"
-                        className="mt-1.5"
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="postcode">Postcode *</Label>
-                        <Input
-                          id="postcode"
-                          name="postcode"
-                          value={form.postcode}
-                          onChange={handleChange}
-                          required
-                          placeholder="1015 AA"
-                          className="mt-1.5"
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="plaats">Plaats *</Label>
-                        <Input
-                          id="plaats"
-                          name="plaats"
-                          value={form.plaats}
-                          onChange={handleChange}
-                          required
-                          placeholder="Amsterdam"
-                          className="mt-1.5"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <Button
-                  type="submit"
-                  variant="hero"
-                  size="lg"
-                  className="w-full text-base"
-                >
-                  Start mijn project
-                </Button>
-
-                <p className="text-xs text-muted-foreground text-center">
-                  Door te bestellen ga je akkoord met onze algemene voorwaarden.
-                </p>
-              </form>
-            </AnimatedSection>
-          </div>
-
-          {/* Order summary – right side */}
-          <div className="lg:col-span-2 order-1 lg:order-2">
-            <AnimatedSection delay={0.2}>
-              <div className="rounded-2xl border border-border bg-card p-6 sticky top-8">
-                <h2 className="text-lg font-heading font-semibold mb-5">
-                  Overzicht
+        {/* Personal approach section */}
+        <AnimatedSection delay={0.1}>
+          <div className="mt-14 rounded-2xl border border-border bg-card p-8 md:p-10">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                <Users className="w-5 h-5 text-accent" />
+              </div>
+              <div>
+                <h2 className="text-xl font-heading font-semibold">
+                  Onze persoonlijke aanpak
                 </h2>
+                <p className="mt-2 text-muted-foreground leading-relaxed">
+                  Omdat wij elke website met de hand coderen, willen we eerst jouw
+                  visie begrijpen. Geen standaard templates, maar een site die
+                  precies doet wat jij nodig hebt. Na ons gesprek sturen we de
+                  factuur en gaan we direct aan de slag.
+                </p>
+              </div>
+            </div>
 
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium">
-                      Pakket {pkg.name}
-                    </span>
-                    <span className="font-heading font-bold">
-                      €{pkg.oneTime}
-                    </span>
-                  </div>
+            {/* Package summary */}
+            <div className="mt-6 p-4 rounded-xl bg-muted/50 space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="font-medium">Pakket {pkg.name}</span>
+                <span className="font-heading font-semibold">{pkg.price}</span>
+              </div>
+              <div className="flex flex-wrap gap-3 pt-1">
+                {pkg.features.map((f) => (
+                  <span
+                    key={f.label}
+                    className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"
+                  >
+                    <f.icon className="w-3.5 h-3.5 text-accent" />
+                    {f.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
 
-                  {pkg.monthly && (
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <span>Maandelijks vanaf volgende maand</span>
-                      <span className="font-medium text-foreground">
-                        €{pkg.monthly}/mnd
-                      </span>
-                    </div>
-                  )}
+        {/* Request form */}
+        <AnimatedSection delay={0.15}>
+          <div className="mt-12">
+            <h2 className="text-2xl font-heading font-bold tracking-tight mb-2">
+              Vertel ons over jouw project
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Vul onderstaand formulier in en wij nemen binnen 24 uur contact met
+              je op.
+            </p>
 
-                  <div className="border-t border-border pt-4 flex items-center justify-between">
-                    <span className="font-heading font-semibold">
-                      Vandaag te betalen
-                    </span>
-                    <span className="text-xl font-heading font-bold">
-                      €{pkg.oneTime}
-                    </span>
-                  </div>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <Label htmlFor="naam">Naam *</Label>
+                  <Input
+                    id="naam"
+                    name="naam"
+                    value={form.naam}
+                    onChange={handleChange}
+                    required
+                    placeholder="Jan de Vries"
+                    className="mt-1.5"
+                  />
                 </div>
+                <div>
+                  <Label htmlFor="bedrijfsnaam">Bedrijfsnaam *</Label>
+                  <Input
+                    id="bedrijfsnaam"
+                    name="bedrijfsnaam"
+                    value={form.bedrijfsnaam}
+                    onChange={handleChange}
+                    required
+                    placeholder="Jouw Bedrijf B.V."
+                    className="mt-1.5"
+                  />
+                </div>
+              </div>
 
-                {/* Features */}
-                <ul className="mt-6 space-y-2.5">
-                  {pkg.features.map((f) => (
-                    <li
-                      key={f.label}
-                      className="flex items-center gap-2.5 text-sm"
-                    >
-                      <Check className="w-4 h-4 text-accent shrink-0" />
-                      <span>{f.label}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <Label htmlFor="email">E-mailadres *</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="jan@bedrijf.nl"
+                    className="mt-1.5"
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="website">
+                    Huidige website{" "}
+                    <span className="text-muted-foreground font-normal">
+                      (optioneel)
+                    </span>
+                  </Label>
+                  <Input
+                    id="website"
+                    name="website"
+                    value={form.website}
+                    onChange={handleChange}
+                    placeholder="www.jouwsite.nl"
+                    className="mt-1.5"
+                  />
+                </div>
+              </div>
 
-                {/* Trust badges */}
-                <div className="mt-8 pt-6 border-t border-border space-y-3">
-                  {trustBadges.map((badge) => (
-                    <div
-                      key={badge.label}
-                      className="flex items-center gap-2.5 text-xs text-muted-foreground"
+              <div>
+                <Label htmlFor="doel">
+                  Wat is het belangrijkste doel van je nieuwe site? *
+                </Label>
+                <Textarea
+                  id="doel"
+                  name="doel"
+                  value={form.doel}
+                  onChange={handleChange}
+                  required
+                  placeholder="Bijv. meer klanten aantrekken, professioneler overkomen, online boekingen mogelijk maken..."
+                  className="mt-1.5 min-h-[100px]"
+                />
+              </div>
+
+              {/* Contact preference */}
+              <div>
+                <Label>Voorkeur voor contact</Label>
+                <div className="mt-2 flex flex-wrap gap-3">
+                  {contactOptions.map((opt) => (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() =>
+                        setForm({ ...form, contact: opt.value })
+                      }
+                      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-medium transition-all ${
+                        form.contact === opt.value
+                          ? "border-accent bg-accent/10 text-accent"
+                          : "border-border bg-card text-muted-foreground hover:border-foreground/20"
+                      }`}
                     >
-                      <badge.icon className="w-4 h-4 shrink-0" />
-                      <span>{badge.label}</span>
-                    </div>
+                      <opt.icon className="w-4 h-4" />
+                      {opt.label}
+                    </button>
                   ))}
                 </div>
               </div>
-            </AnimatedSection>
+
+              <Button
+                type="submit"
+                variant="hero"
+                size="lg"
+                className="w-full text-base mt-4"
+              >
+                Vraag gratis adviesgesprek aan
+              </Button>
+            </form>
           </div>
-        </div>
+        </AnimatedSection>
+
+        {/* Social proof / trust */}
+        <AnimatedSection delay={0.2}>
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-3 bg-card border border-border rounded-2xl px-6 py-4">
+              <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-accent" />
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-heading font-semibold">
+                  Binnen 24 uur een reactie
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  Geen tussenpersonen, direct contact met de developers
+                </p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
 
         {/* Micro FAQ */}
-        <AnimatedSection delay={0.3}>
-          <div className="mt-20 max-w-2xl mx-auto">
+        <AnimatedSection delay={0.25}>
+          <div className="mt-16 max-w-2xl mx-auto">
             <h2 className="text-lg font-heading font-semibold text-center mb-6">
               Veelgestelde vragen
             </h2>
