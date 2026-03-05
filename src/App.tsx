@@ -11,17 +11,18 @@ import Portfolio from "./pages/Portfolio";
 import Prijzen from "./pages/Prijzen";
 import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
+import Bedankt from "./pages/Bedankt";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
 const AppLayout = () => {
   const location = useLocation();
-  const isCheckout = location.pathname === "/checkout";
+  const isMinimalLayout = ["/checkout", "/bedankt"].includes(location.pathname);
 
   return (
     <>
-      {!isCheckout && <Navbar />}
+      {!isMinimalLayout && <Navbar />}
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/werkwijze" element={<Werkwijze />} />
@@ -29,9 +30,10 @@ const AppLayout = () => {
         <Route path="/prijzen" element={<Prijzen />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/bedankt" element={<Bedankt />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {!isCheckout && <Footer />}
+      {!isMinimalLayout && <Footer />}
     </>
   );
 };

@@ -88,6 +88,7 @@ const Checkout = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Future: send to backend
+    navigate("/bedankt");
   };
 
   return (
@@ -280,7 +281,7 @@ const Checkout = () => {
                 size="lg"
                 className="w-full text-base mt-4"
               >
-                Vraag gratis adviesgesprek aan
+                Start jouw project
               </Button>
             </form>
           </div>
