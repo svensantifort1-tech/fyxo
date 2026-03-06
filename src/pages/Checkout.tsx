@@ -88,10 +88,32 @@ const Checkout = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Future: send to backend
-    navigate("/bedankt");
+    setLoading(true);
+
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          naam: form.naam,
+          email: form.email,
+          bedrijfsnaam: form.bedrijfsnaam,
+          bericht: form.doel,
+          bron: "checkout",
+          pakket: pkg.name,
+          website: form.website,
+          contact_voorkeur: form.contact,
+        },
+      });
+
+      if (error) throw error;
+      navigate("/bedankt");
+    } catch (err) {
+      console.error("Submit error:", err);
+      toast.error("Er ging iets mis. Probeer het opnieuw.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
