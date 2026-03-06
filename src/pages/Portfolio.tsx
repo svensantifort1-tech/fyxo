@@ -1,5 +1,6 @@
 import AnimatedSection from "@/components/AnimatedSection";
-import { ArrowUpRight, Cpu, Leaf, Armchair, HeartPulse, Megaphone, HardHat } from "lucide-react";
+import { Cpu, Leaf, Armchair, HeartPulse, Megaphone, HardHat } from "lucide-react";
+import bobBouwer from "@/assets/bob-bouwer.png";
 
 const projects = [
   {
