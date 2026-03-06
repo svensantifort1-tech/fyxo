@@ -79,6 +79,7 @@ const Checkout = () => {
     contact: "whatsapp",
   });
 
+  const [loading, setLoading] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const handleChange = (
