@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Mail, MapPin, Send, ChevronDown } from "lucide-react";
+import { Mail, MapPin, Send, ChevronDown, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const faqs = [
   {
@@ -27,10 +28,43 @@ const faqs = [
 
 const Contact = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    naam: "",
+    email: "",
+    bedrijfsnaam: "",
+    bericht: "",
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Bericht verzonden! We nemen zo snel mogelijk contact op.");
+    setLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          naam: form.naam,
+          email: form.email,
+          bedrijfsnaam: form.bedrijfsnaam,
+          bericht: form.bericht,
+          bron: "contact",
+        },
+      });
+
+      if (error) throw error;
+
+      toast.success("Bericht verzonden! We nemen binnen 24 uur contact met je op.");
+      setForm({ naam: "", email: "", bedrijfsnaam: "", bericht: "" });
+    } catch (err) {
+      console.error("Submit error:", err);
+      toast.error("Er ging iets mis. Probeer het opnieuw of mail ons direct.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,24 +89,33 @@ const Contact = () => {
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label className="text-sm font-medium mb-2 block">Naam</label>
-                    <Input placeholder="Je naam" required />
+                    <Input name="naam" value={form.naam} onChange={handleChange} placeholder="Je naam" required />
                   </div>
                   <div>
                     <label className="text-sm font-medium mb-2 block">E-mail</label>
-                    <Input type="email" placeholder="naam@bedrijf.nl" required />
+                    <Input name="email" type="email" value={form.email} onChange={handleChange} placeholder="naam@bedrijf.nl" required />
                   </div>
                 </div>
                 <div>
                   <label className="text-sm font-medium mb-2 block">Bedrijfsnaam</label>
-                  <Input placeholder="Je bedrijf" />
+                  <Input name="bedrijfsnaam" value={form.bedrijfsnaam} onChange={handleChange} placeholder="Je bedrijf" />
                 </div>
                 <div>
                   <label className="text-sm font-medium mb-2 block">Bericht</label>
-                  <Textarea placeholder="Vertel ons over je project..." rows={5} required />
+                  <Textarea name="bericht" value={form.bericht} onChange={handleChange} placeholder="Vertel ons over je project..." rows={5} required />
                 </div>
-                <Button variant="hero" size="lg" type="submit">
-                  Verstuur bericht
-                  <Send className="w-4 h-4" />
+                <Button variant="hero" size="lg" type="submit" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Versturen...
+                    </>
+                  ) : (
+                    <>
+                      Verstuur bericht
+                      <Send className="w-4 h-4" />
+                    </>
+                  )}
                 </Button>
               </form>
             </AnimatedSection>
