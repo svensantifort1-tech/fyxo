@@ -63,7 +63,7 @@ const Portfolio = () => (
             return (
               <AnimatedSection key={project.name} delay={i * 0.08}>
                 <div className="group rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30">
-                  <div className="relative h-48 overflow-hidden">
+                  <div className={`relative h-48 overflow-hidden ${project.contain ? 'bg-[#f0f0f0]' : ''}`}>
                     <img
                       src={project.image}
                       alt={project.name}
