@@ -75,10 +75,7 @@ const Portfolio = () => (
                     </div>
                   </div>
                   <div className="p-6">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-heading font-semibold">{project.name}</h3>
-                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
-                    </div>
+                    <h3 className="text-lg font-heading font-semibold mb-2">{project.name}</h3>
                     <p className="text-sm text-muted-foreground">{project.category}</p>
                   </div>
                 </div>
