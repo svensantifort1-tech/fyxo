@@ -38,7 +38,7 @@ const projects = [
     category: "Bouw & Constructie",
     image: bobBouwer,
     icon: HardHat,
-    contain: true,
+    
   },
 ];
 
@@ -67,7 +67,7 @@ const Portfolio = () => (
                     <img
                       src={project.image}
                       alt={project.name}
-                      className={`w-full h-full transition-transform duration-500 group-hover:scale-105 ${project.contain ? 'object-contain p-4' : 'object-cover'}`}
+                      className="w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-foreground/30 group-hover:bg-foreground/20 transition-colors" />
