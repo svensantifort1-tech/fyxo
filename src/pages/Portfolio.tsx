@@ -38,6 +38,7 @@ const projects = [
     category: "Bouw & Constructie",
     image: bobBouwer,
     icon: HardHat,
+    contain: true,
   },
 ];
 
