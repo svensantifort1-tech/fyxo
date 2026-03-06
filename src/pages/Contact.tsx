@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Mail, Phone, MapPin, Send, ChevronDown } from "lucide-react";
+import { Mail, MapPin, Send, ChevronDown } from "lucide-react";
 import { toast } from "sonner";
 
 const faqs = [
   {
     q: "Hoe lang duurt het om een website te bouwen?",
-    a: "Gemiddeld 2-4 weken, afhankelijk van de complexiteit. Eenvoudige sites kunnen sneller, grotere projecten duren langer.",
+    a: "Gemiddeld 1–2 weken, afhankelijk van de complexiteit en jouw feedback.",
   },
   {
     q: "Kan ik mijn bestaande website laten verbeteren?",
@@ -84,8 +84,7 @@ const Contact = () => {
                   <h3 className="font-heading font-semibold text-lg mb-4">Contactgegevens</h3>
                   <div className="space-y-4">
                     {[
-                      { icon: Mail, text: "info@fyxo.nl" },
-                      { icon: Phone, text: "+31 6 12345678" },
+                      { icon: Mail, text: "info@fyxo.online" },
                       { icon: MapPin, text: "Nederland" },
                     ].map(({ icon: Icon, text }) => (
                       <div key={text} className="flex items-center gap-3 text-muted-foreground">
