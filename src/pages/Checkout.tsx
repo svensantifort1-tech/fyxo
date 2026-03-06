@@ -305,8 +305,16 @@ const Checkout = () => {
                 variant="hero"
                 size="lg"
                 className="w-full text-base mt-4"
+                disabled={loading}
               >
-                Start jouw project
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Versturen...
+                  </>
+                ) : (
+                  "Start jouw project"
+                )}
               </Button>
             </form>
           </div>
