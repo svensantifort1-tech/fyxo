@@ -1,42 +1,42 @@
 import AnimatedSection from "@/components/AnimatedSection";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Cpu, Leaf, Armchair, HeartPulse, Megaphone, HardHat } from "lucide-react";
 
 const projects = [
   {
-    name: "Veldhoven Elektra",
-    category: "ZZP · Elektricien",
-    result: "PageSpeed: 98 · +120% meer offerteaanvragen",
-    color: "from-accent/20 to-accent/5",
+    name: "Lumina Stratos",
+    category: "Technologie & Software",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=400&fit=crop",
+    icon: Cpu,
   },
   {
-    name: "Studio Bloom",
-    category: "MKB · Bloemisterij",
-    result: "PageSpeed: 100 · Online bestellingen +85%",
-    color: "from-emerald-500/20 to-emerald-500/5",
+    name: "GroenAnker",
+    category: "Duurzaam Advies & Logistiek",
+    image: "https://images.unsplash.com/photo-1473091534298-04dcbce3278c?w=600&h=400&fit=crop",
+    icon: Leaf,
   },
   {
-    name: "De Bouwvakker",
-    category: "ZZP · Aannemer",
-    result: "PageSpeed: 97 · #1 in lokale Google-resultaten",
-    color: "from-amber-500/20 to-amber-500/5",
+    name: "Velvet & Oak",
+    category: "Interieurdesign & Meubels",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&h=400&fit=crop",
+    icon: Armchair,
   },
   {
-    name: "FitZone Academy",
-    category: "MKB · Sportschool",
-    result: "PageSpeed: 99 · Ledengroei +60% in 3 maanden",
-    color: "from-rose-500/20 to-rose-500/5",
+    name: "NovaCura Health",
+    category: "Gezondheidszorg & Welzijn",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+    icon: HeartPulse,
   },
   {
-    name: "Kapper Koen",
-    category: "ZZP · Kapsalon",
-    result: "PageSpeed: 100 · Online boekingen verdrievoudigd",
-    color: "from-violet-500/20 to-violet-500/5",
+    name: "Apex Pulse",
+    category: "Marketing & Creatief Bureau",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop",
+    icon: Megaphone,
   },
   {
-    name: "TechFlow Solutions",
-    category: "MKB · IT Services",
-    result: "PageSpeed: 96 · 2x meer leads via website",
-    color: "from-cyan-500/20 to-cyan-500/5",
+    name: "Bob's Bouwbedrijf",
+    category: "Bouw & Constructie",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop",
+    icon: HardHat,
   },
 ];
 
@@ -56,23 +56,34 @@ const Portfolio = () => (
         </AnimatedSection>
 
         <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
-            <AnimatedSection key={project.name} delay={i * 0.08}>
-              <div className="group rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30">
-                <div className={`h-48 bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                  <span className="font-heading text-2xl font-bold text-foreground/80">{project.name.charAt(0)}</span>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-2">
-                    <h3 className="text-lg font-heading font-semibold">{project.name}</h3>
-                    <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
+          {projects.map((project, i) => {
+            const Icon = project.icon;
+            return (
+              <AnimatedSection key={project.name} delay={i * 0.08}>
+                <div className="group rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30">
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-foreground/30 group-hover:bg-foreground/20 transition-colors" />
+                    <div className="absolute bottom-3 left-3 rounded-full bg-background/90 p-2 backdrop-blur-sm">
+                      <Icon className="w-5 h-5 text-accent" />
+                    </div>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-3">{project.category}</p>
-                  <p className="text-sm font-medium text-accent">{project.result}</p>
+                  <div className="p-6">
+                    <div className="flex items-start justify-between mb-2">
+                      <h3 className="text-lg font-heading font-semibold">{project.name}</h3>
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
+                    </div>
+                    <p className="text-sm text-muted-foreground">{project.category}</p>
+                  </div>
                 </div>
-              </div>
-            </AnimatedSection>
-          ))}
+              </AnimatedSection>
+            );
+          })}
         </div>
       </div>
     </section>
