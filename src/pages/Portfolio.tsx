@@ -1,5 +1,6 @@
 import AnimatedSection from "@/components/AnimatedSection";
-import { ArrowUpRight, Cpu, Leaf, Armchair, HeartPulse, Megaphone, HardHat } from "lucide-react";
+import { Cpu, Leaf, Armchair, HeartPulse, Megaphone, HardHat } from "lucide-react";
+import bobBouwer from "@/assets/bob-bouwer.png";
 
 const projects = [
   {
@@ -35,7 +36,7 @@ const projects = [
   {
     name: "Bob's Bouwbedrijf",
     category: "Bouw & Constructie",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop",
+    image: bobBouwer,
     icon: HardHat,
   },
 ];
@@ -74,10 +75,7 @@ const Portfolio = () => (
                     </div>
                   </div>
                   <div className="p-6">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="text-lg font-heading font-semibold">{project.name}</h3>
-                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
-                    </div>
+                    <h3 className="text-lg font-heading font-semibold mb-2">{project.name}</h3>
                     <p className="text-sm text-muted-foreground">{project.category}</p>
                   </div>
                 </div>
