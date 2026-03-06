@@ -36,7 +36,7 @@ const projects = [
   {
     name: "Bob's Bouwbedrijf",
     category: "Bouw & Constructie",
-    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop",
+    image: bobBouwer,
     icon: HardHat,
   },
 ];
