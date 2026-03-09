@@ -12,6 +12,7 @@ import Prijzen from "./pages/Prijzen";
 import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
 import Bedankt from "./pages/Bedankt";
+import OverOns from "./pages/OverOns";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const AppLayout = () => {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/prijzen" element={<Prijzen />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/over-ons" element={<OverOns />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/bedankt" element={<Bedankt />} />
         <Route path="*" element={<NotFound />} />

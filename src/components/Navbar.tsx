@@ -8,6 +8,7 @@ const navLinks = [
   { to: "/werkwijze", label: "Werkwijze" },
   { to: "/portfolio", label: "Portfolio" },
   { to: "/prijzen", label: "Prijzen" },
+  { to: "/over-ons", label: "Over ons" },
   { to: "/contact", label: "Contact" },
 ];
 
