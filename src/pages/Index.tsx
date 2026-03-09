@@ -4,7 +4,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { Zap, Code, Gauge, ArrowRight } from "lucide-react";
 
 const stats = [
-  { value: "100", label: "PageSpeed Score", suffix: "/100" },
+  { value: "90+", label: "PageSpeed Score", suffix: "/100" },
   { value: "<1s", label: "Laadtijd", suffix: "" },
   { value: "0", label: "Onnodige plug-ins", suffix: "" },
 ];
