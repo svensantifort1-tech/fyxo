@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: "Kan ik mijn bestaande website laten verbeteren?",
-    a: "Absoluut. We kunnen je huidige site analyseren en een plan maken om de snelheid en kwaliteit drastisch te verbeteren.",
+    a: "Absoluut. We kunnen je huidige site analyseren en een plan maken om de Google PageSpeed score naar 90/100 of hoger te brengen.",
   },
   {
     q: "Wat als ik later wijzigingen wil?",
