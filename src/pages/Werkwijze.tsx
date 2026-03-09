@@ -10,7 +10,7 @@ const steps = [
   {
     icon: Code2,
     title: "2. Handmatige Ontwikkeling",
-    description: "Geen WordPress, geen Wix, geen drag-and-drop. We schrijven elke regel code met de hand. Het resultaat: een website die razendsnel laadt en perfect werkt op elk apparaat.",
+    description: "Geen WordPress, geen Wix, geen drag-and-drop. We schrijven elke regel code met de hand. Het resultaat: een website met een Google PageSpeed score van 90/100 of hoger die perfect werkt op elk apparaat.",
   },
   {
     icon: Rocket,
