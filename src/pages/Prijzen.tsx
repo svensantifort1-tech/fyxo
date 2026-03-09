@@ -13,7 +13,7 @@ const packages = [
       "Handgemaakte website",
       "Responsive design",
       "SEO-geoptimaliseerd",
-      "PageSpeed 95+",
+      "Google PageSpeed 90+/100eed 90+/100eed 90+/100",
       "Broncode volledig van jou",
       "Eenmalige oplevering",
     ],
@@ -23,13 +23,13 @@ const packages = [
     name: "Premium",
     price: "€200",
     period: "eenmalig + €50/maand",
-    description: "Volledig ontzorgd. Wij regelen hosting, updates en onderhoud zodat jouw site altijd razendsnel blijft.",
+    description: "Volledig ontzorgd. Wij regelen hosting, updates en onderhoud zeen Google PageSpeed score van 90/100 of hoger behoudoogle PageSpeed score van 90/100 of hoger behouddsnel blijft.",
     badge: "Meest gekozen",
     features: [
       "Alles uit Standaard",
       "Premium hosting inbegrepen",
       "Maandelijks onderhoud & updates",
-      "Snelheidsmonitoring",
+      "PageSpeed monitoring (90+/100 garantie)",
       "Prioriteit support",
       "SSL-certificaat inbegrepen",
       "Dagelijkse backups",
@@ -49,8 +49,8 @@ const Prijzen = () => (
             <span className="text-gradient">Geen verrassingen.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Kies het pakket dat bij jou past. Beide pakketten leveren een razendsnelle, 
-            handgemaakte website op.
+            Kies het pakket dat bij jou past. Beide pakketten leveren een 
+            handgemaakte website op met een Google PageSpeed score van 90/100 of hoger.
           </p>
         </AnimatedSection>
 
