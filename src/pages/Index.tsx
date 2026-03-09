@@ -42,9 +42,9 @@ const Index = () => {
 
           <AnimatedSection delay={0.1}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
-              Websites die{" "}
-              <span className="text-gradient">razendsnel</span>{" "}
-              laden. Zonder compromis.
+              Websites met een{" "}
+              <span className="text-gradient">Google PageSpeed van 90+</span>.{" "}
+              Zonder compromis.
             </h1>
           </AnimatedSection>
 
