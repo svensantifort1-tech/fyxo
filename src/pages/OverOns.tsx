@@ -46,7 +46,7 @@ const OverOns = () => (
                 <img
                   src={member.image}
                   alt={member.name}
-                  className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${member.name === "Kjell" ? "object-[40%_center]" : ""}`}
+                  className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${member.name === "Kjell" ? "object-[25%_center]" : ""}`}
                 />
               </div>
               <div className="p-6">
