@@ -15,7 +15,7 @@ const steps = [
   {
     icon: Rocket,
     title: "3. Optimalisatie & Lancering",
-    description: "Voordat je site live gaat, optimaliseren we alles: afbeeldingen, code, SEO-tags en laadtijden. We stoppen pas bij een PageSpeed score van 95+.",
+    description: "Voordat je site live gaat, optimaliseren we alles: afbeeldingen, code, SEO-tags en laadtijden. We stoppen pas bij een PageSpeed score van 90+.",
   },
   {
     icon: Shield,
