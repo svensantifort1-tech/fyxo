@@ -23,7 +23,7 @@ const features = [
   {
     icon: Gauge,
     title: "Maximale PageSpeed",
-    description: "Waar WordPress-templates scoren rond de 40-60, scoren onze sites consistent 90+.",
+    description: "Waar WordPress-templates scoren rond de 40-60, scoren onze sites consistent 90+
   },
 ];
 
@@ -36,7 +36,7 @@ const Index = () => {
           <AnimatedSection>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm text-muted-foreground mb-8">
               <Zap className="w-3.5 h-3.5 text-accent" />
-              Handgemaakte websites · 100/100 PageSpeed
+              Handgemaakte websites · 10090+0 PageSpeed
             </div>
           </AnimatedSection>
 
