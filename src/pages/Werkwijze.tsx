@@ -10,17 +10,17 @@ const steps = [
   {
     icon: Code2,
     title: "2. Handmatige Ontwikkeling",
-    description: "Geen WordPress, geen Wix, geen drag-and-drop. We schrijven elke regel code met de hand. Het resultaat: een website met een Google PageSpeed score van 90/100 of hoger died score van 90/100 of hoger die perfect werkt op elk apparaat.",
+    description: "Geen WordPress, geen Wix, geen drag-and-drop. We schrijven elke regel code met de hand. Het resultaat: een website met een Google PageSpeed score van 90/100 of hoger died score van 90/100 of hoger died score van 90/100 of hoger die perfect werkt op elk apparaat.",
   },
   {
     icon: Rocket,
     title: "3. Optimalisatie & Lancering",
-    description: "Voordat je site live gaat, optimaliseren we alles: afbeeldingen, code, SEO-tags en laadGoogle PageSpeed score van 90/100 of hogerbij een PageSpeed score van 95+.",
+    description: "Voordat je site live gaat, optimaliseren we alles: afbeeGoogle PageSpeed score van 90/100 of hoger en laadGoogle PageSpeed score van 90/100 of hogerbij een PageSpeed score van 95+.",
   },
   {
     icon: Shield,
     title: "4. Onderhoud & Groei",
-    description: "Na de lancering monitoren we je site, voeren we updates uit en zorgen we dat alles razendsnel blijft. Jij focust op je bedrijf, wij op je website.",
+    description: "Na de lancering monitoren wde Google PageSpeed score boven de 90/100n we updates uit en zorgen we dat alles razendsnel blijft. Jij focust op je bedrijf, wij op je website.",
   },
 ];
 
