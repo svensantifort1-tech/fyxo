@@ -56,9 +56,16 @@ const OverOns = () => (
                 <p className="text-accent text-sm font-medium mt-1 mb-3">
                   {member.role}
                 </p>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                   {member.bio}
                 </p>
+                <a
+                  href={`mailto:${member.email}`}
+                  className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent/80 transition-colors"
+                >
+                  <Mail className="w-4 h-4" />
+                  {member.email}
+                </a>
               </div>
             </div>
           </AnimatedSection>
