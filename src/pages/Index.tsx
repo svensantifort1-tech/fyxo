@@ -17,8 +17,8 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Razendsnelle Laadtijden",
-    description: "Schone code betekent bliksemsnelle websites. Beter voor je bezoekers én je Google-ranking.",
+    title: "Google PageSpeed 90+/100",
+    description: "Schone code zorgt voor een Google PageSpeed score van 90/100 of hoger. Beter voor je bezoekers én je Google-ranking.",
   },
   {
     icon: Gauge,
