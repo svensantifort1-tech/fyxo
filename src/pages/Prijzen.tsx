@@ -28,8 +28,8 @@ const packages = [
     features: [
       "Alles uit Standaard",
       "Premium hosting inbegrepen",
-PageSpeed monitoring (90+/100 garantie)onderhoud & updates",
-      "Snelheidsmonitoring",
+      "Maandelijks onderhoud & updates",
+      "PageSpeed monitoring (90+/100 garantie)",
       "Prioriteit support",
       "SSL-certificaat inbegrepen",
       "Dagelijkse backups",
