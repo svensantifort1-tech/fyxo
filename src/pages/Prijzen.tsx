@@ -13,7 +13,7 @@ const packages = [
       "Handgemaakte website",
       "Responsive design",
       "SEO-geoptimaliseerd",
-      "PageSpeed 95+",
+      "Google PageSpeed 90+/100",
       "Broncode volledig van jou",
       "Eenmalige oplevering",
     ],
