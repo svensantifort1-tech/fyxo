@@ -23,7 +23,7 @@ const features = [
   {
     icon: Gauge,
     title: "Maximale PageSpeed",
-    description: "Waar WordPress-templates scoren rond de 40-60, scoren onze sites consistent 90+
+    description: "Waar WordPress-templates scoren rond de 40-60, scoren onze sites consistent 90+.",
   },
 ];
 
