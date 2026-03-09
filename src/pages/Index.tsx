@@ -51,8 +51,8 @@ const Index = () => {
           <AnimatedSection delay={0.2}>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
               Fyxo bouwt handgemaakte websites met schone code. Geen zware templates,
-              geen overbodige plug-ins. Alleen pure performance die je concurrentie
-              verslaat in Google.
+              geen overbodige plug-ins. Alleen pure performance met een Google PageSpeed
+              score van 90/100 of hoger.
             </p>
           </AnimatedSection>
 

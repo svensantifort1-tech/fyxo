@@ -44,7 +44,7 @@ const Werkwijze = () => (
             <span className="text-gradient">zonder complexiteit</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Onze werkwijze draait om één ding: de snelste, schoonste website bouwen die mogelijk is. 
+            Onze werkwijze draait om één ding: een website bouwen met een Google PageSpeed score van 90/100 of hoger. 
             Geen shortcuts, geen compromissen.
           </p>
         </AnimatedSection>

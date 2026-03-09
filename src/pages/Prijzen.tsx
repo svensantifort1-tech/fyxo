@@ -49,8 +49,8 @@ const Prijzen = () => (
             <span className="text-gradient">Geen verrassingen.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Kies het pakket dat bij jou past. Beide pakketten leveren een razendsnelle, 
-            handgemaakte website op.
+            Kies het pakket dat bij jou past. Beide pakketten leveren een 
+            handgemaakte website op met een Google PageSpeed score van 90/100 of hoger.
           </p>
         </AnimatedSection>
 
