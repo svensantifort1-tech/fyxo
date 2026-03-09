@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: "Kan ik mijn bestaande website laten verbeteren?",
-    a: "Absoluut. We kunnen je huidige site analyseren en een plan maken om de Google PageSpeed score naar 90/100 of hoger te breng te brengen.",
+    a: "Absoluut. We kunnen je huidige site analyseren en een plan maken om de snelheid en kwaliteit drastisch te verbeteren.",
   },
   {
     q: "Wat als ik later wijzigingen wil?",
@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "Waarom is handgemaakte code beter dan WordPress?",
-    a: "WordPress laadt tientallen plug-ins en ongebruikte code. Handgemaakte code bevat alleen wat nodig is, wat resuleen Google PageSpeed score van 90/100 of hogerller zijn.",
+    a: "WordPress laadt tientallen plug-ins en ongebruikte code. Handgemaakte code bevat alleen wat nodig is, wat resulteert in laadtijden die tot 10x sneller zijn.",
   },
 ];
 

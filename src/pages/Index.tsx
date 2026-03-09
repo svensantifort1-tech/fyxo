@@ -17,8 +17,8 @@ const features = [
   },
   {
     icon: Zap,
-    title: "Google PageSpeed 90+/100",
-    description: "Schone code zorgt voor een Google PageSpeed score van 90/100 of hoger. Beter voor je bezoekers én je Google-ranking.",
+    title: "Razendsnelle Laadtijden",
+    description: "Schone code betekent bliksemsnelle websites. Beter voor je bezoekers én je Google-ranking.",
   },
   {
     icon: Gauge,
@@ -42,17 +42,17 @@ const Index = () => {
 
           <AnimatedSection delay={0.1}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
-              Websites met een{" "}
-              <span className="text-gradient">Google PageSpeed van 90+</span>.{" "}
-              Zonder compromis.
+              Websites die{" "}
+              <span className="text-gradient">razendsnel</span>{" "}
+              laden. Zonder compromis.
             </h1>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
               Fyxo bouwt handgemaakte websites met schone code. Geen zware templates,
-              geen overbodige plug-ins. Alleen pure performance met een Google PageSpeed
-              score van 90/100 of hoger.
+              geen overbodige plug-ins. Alleen pure performance die je concurrentie
+              verslaat in Google.
             </p>
           </AnimatedSection>
 

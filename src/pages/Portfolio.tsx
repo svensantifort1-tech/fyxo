@@ -53,7 +53,7 @@ const Portfolio = () => (
             <span className="text-gradient">onze klanten</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Van ZZP'er tot MKB-bedrijf — elk project is handgemaakt en geoptimaliseerd voor een Google PageSpeed score van 90/100 of hoger.
+            Van ZZP'er tot MKB-bedrijf — elk project is handgemaakt en geoptimaliseerd voor maximale performance.
           </p>
         </AnimatedSection>
 
