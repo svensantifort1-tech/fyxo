@@ -8,12 +8,14 @@ const team = [
     name: "Kjell",
     role: "Co-founder & Developer",
     image: kjellImg,
+    email: "kjell@fyxo.online",
     bio: "Kjell is gepassioneerd door technologie en design. Hij zorgt ervoor dat elk project niet alleen mooi oogt, maar ook technisch sterk in elkaar zit.",
   },
   {
     name: "Sven",
     role: "Co-founder & Designer",
     image: svenImg,
+    email: "sven@fyxo.online",
     bio: "Sven heeft een scherp oog voor detail en gebruikerservaring. Hij vertaalt ideeën naar visueel sterke en intuïtieve websites.",
   },
 ];
