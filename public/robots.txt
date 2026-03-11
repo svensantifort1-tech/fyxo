@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://fyxo.lovable.app/sitemap.xml
+Sitemap: https://fyxo.online/sitemap.xml
