@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://fyxo.lovable.app/</loc>
+    <loc>https://fyxo.online/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://fyxo.lovable.app/werkwijze</loc>
+    <loc>https://fyxo.online/werkwijze</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fyxo.lovable.app/portfolio</loc>
+    <loc>https://fyxo.online/portfolio</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fyxo.lovable.app/prijzen</loc>
+    <loc>https://fyxo.online/prijzen</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://fyxo.lovable.app/over-ons</loc>
+    <loc>https://fyxo.online/over-ons</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://fyxo.lovable.app/contact</loc>
+    <loc>https://fyxo.online/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
