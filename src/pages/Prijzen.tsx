@@ -10,7 +10,7 @@ const packages = [
     period: "eenmalig",
     description: "Volledige eigendom van je website. Jij beheert alles zelf.",
     features: [
-      "Handgemaakte website",
+      "Professionele website op maat",
       "Responsive design",
       "SEO-geoptimaliseerd",
       "PageSpeed 90+",
@@ -45,12 +45,12 @@ const Prijzen = () => (
         <AnimatedSection>
           <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Prijzen</p>
           <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight max-w-3xl">
-            Transparante prijzen.{" "}
+            Betaalbare website.{" "}
             <span className="text-gradient">Geen verrassingen.</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
             Kies het pakket dat bij jou past. Beide pakketten leveren een razendsnelle, 
-            handgemaakte website op.
+            professionele website op.
           </p>
         </AnimatedSection>
 

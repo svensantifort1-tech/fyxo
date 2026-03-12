@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Mail, MapPin, Send, ChevronDown, Loader2 } from "lucide-react";
+import { Mail, Send, ChevronDown, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -21,8 +21,8 @@ const faqs = [
     a: "Met het Premium-pakket zijn kleine wijzigingen inbegrepen. Bij het Standaard-pakket kun je zelf wijzigingen doorvoeren of ons inhuren.",
   },
   {
-    q: "Waarom is handgemaakte code beter dan WordPress?",
-    a: "WordPress laadt tientallen plug-ins en ongebruikte code. Handgemaakte code bevat alleen wat nodig is, wat resulteert in laadtijden die tot 10x sneller zijn.",
+    q: "Waarom is op maat gemaakte code beter dan WordPress?",
+    a: "WordPress laadt tientallen plug-ins en ongebruikte code. Op maat gemaakte code bevat alleen wat nodig is, wat resulteert in laadtijden die tot 10x sneller zijn.",
   },
 ];
 
@@ -126,15 +126,10 @@ const Contact = () => {
                 <div>
                   <h3 className="font-heading font-semibold text-lg mb-4">Contactgegevens</h3>
                   <div className="space-y-4">
-                    {[
-                      { icon: Mail, text: "info@fyxo.online" },
-                      { icon: MapPin, text: "Nederland" },
-                    ].map(({ icon: Icon, text }) => (
-                      <div key={text} className="flex items-center gap-3 text-muted-foreground">
-                        <Icon className="w-4 h-4 text-accent" />
-                        <span className="text-sm">{text}</span>
-                      </div>
-                    ))}
+                    <div className="flex items-center gap-3 text-muted-foreground">
+                      <Mail className="w-4 h-4 text-accent" />
+                      <span className="text-sm">info@fyxo.online</span>
+                    </div>
                   </div>
                 </div>
 
