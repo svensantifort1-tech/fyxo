@@ -54,7 +54,7 @@ const Index = () => {
               geen overbodige plug-ins. Alleen pure performance die je concurrentie
               verslaat in Google.
             </p>
-            <p className="mt-4 text-lg md:text-xl font-heading font-semibold text-foreground">Complete website vanaf €200
+            <p className="mt-4 text-lg md:text-xl font-heading font-semibold text-foreground">Complete website vanaf €300
 
             </p>
           </AnimatedSection>
