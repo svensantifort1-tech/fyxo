@@ -1,17 +1,27 @@
+import { useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Scissors, Wrench, Briefcase, Dumbbell, Coffee, Camera } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { X } from "lucide-react";
+
+import realEstateSite from "@/assets/portfolio/real-estate-site.jpg";
+import restaurantSite from "@/assets/portfolio/restaurant-site.jpg";
+import fitnessSite from "@/assets/portfolio/fitness-site.jpg";
+import photographySite from "@/assets/portfolio/photography-site.jpg";
+import barbershopSite from "@/assets/portfolio/barbershop-site.jpg";
+import accountingSite from "@/assets/portfolio/accounting-site.jpg";
 
 const Portfolio = () => {
   const { t } = useLanguage();
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const projects = [
-    { nameKey: "portfolio.p1.name", catKey: "portfolio.p1.cat", image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&h=400&fit=crop", icon: Scissors },
-    { nameKey: "portfolio.p2.name", catKey: "portfolio.p2.cat", image: "https://images.unsplash.com/photo-1581092921461-eab10380ed62?w=600&h=400&fit=crop", icon: Wrench },
-    { nameKey: "portfolio.p3.name", catKey: "portfolio.p3.cat", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=400&fit=crop", icon: Briefcase },
-    { nameKey: "portfolio.p4.name", catKey: "portfolio.p4.cat", image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop", icon: Dumbbell },
-    { nameKey: "portfolio.p5.name", catKey: "portfolio.p5.cat", image: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=600&h=400&fit=crop", icon: Coffee },
-    { nameKey: "portfolio.p6.name", catKey: "portfolio.p6.cat", image: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=600&h=400&fit=crop", icon: Camera },
+    { nameKey: "portfolio.p1.name", catKey: "portfolio.p1.cat", image: realEstateSite },
+    { nameKey: "portfolio.p2.name", catKey: "portfolio.p2.cat", image: restaurantSite },
+    { nameKey: "portfolio.p3.name", catKey: "portfolio.p3.cat", image: fitnessSite },
+    { nameKey: "portfolio.p4.name", catKey: "portfolio.p4.cat", image: photographySite },
+    { nameKey: "portfolio.p5.name", catKey: "portfolio.p5.cat", image: barbershopSite },
+    { nameKey: "portfolio.p6.name", catKey: "portfolio.p6.cat", image: accountingSite },
   ];
 
   return (
@@ -31,36 +41,53 @@ const Portfolio = () => {
 
           <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, i) => {
-              const Icon = project.icon;
               const name = t(project.nameKey);
               return (
                 <AnimatedSection key={project.nameKey} delay={i * 0.08}>
-                  <div className="group rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30">
-                    <div className="relative h-48 overflow-hidden bg-muted">
-                      <div className="absolute inset-2 rounded-lg overflow-hidden border border-border/50 shadow-sm">
-                        <img src={project.image} alt={name} className="w-full h-full transition-transform duration-500 group-hover:scale-105 object-cover" loading="lazy" />
-                      </div>
-                      <div className="absolute bottom-1 right-3 w-16 h-20 rounded-md overflow-hidden border-2 border-border/60 shadow-md bg-background">
-                        <img src={project.image} alt={`${name} tablet`} className="w-full h-full object-cover" loading="lazy" />
-                      </div>
-                      <div className="absolute bottom-1 right-1 w-8 h-14 rounded-sm overflow-hidden border-2 border-border/60 shadow-md bg-background">
-                        <img src={project.image} alt={`${name} mobile`} className="w-full h-full object-cover" loading="lazy" />
-                      </div>
+                  <button
+                    onClick={() => setSelectedProject(i)}
+                    className="group w-full text-left rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30 focus:outline-none focus:ring-2 focus:ring-accent/50"
+                  >
+                    <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+                      <img
+                        src={project.image}
+                        alt={name}
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Icon className="w-4 h-4 text-accent" />
-                        <h3 className="text-lg font-heading font-semibold">{name}</h3>
-                      </div>
-                      <p className="text-sm text-muted-foreground">{t(project.catKey)}</p>
+                    <div className="p-5">
+                      <h3 className="text-lg font-heading font-semibold">{name}</h3>
+                      <p className="text-sm text-muted-foreground mt-1">{t(project.catKey)}</p>
                     </div>
-                  </div>
+                  </button>
                 </AnimatedSection>
               );
             })}
           </div>
         </div>
       </section>
+
+      <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
+        <DialogContent className="max-w-5xl w-[95vw] p-0 overflow-hidden">
+          {selectedProject !== null && (
+            <div>
+              <div className="max-h-[80vh] overflow-y-auto">
+                <img
+                  src={projects[selectedProject].image}
+                  alt={t(projects[selectedProject].nameKey)}
+                  className="w-full h-auto"
+                />
+              </div>
+              <div className="p-6 border-t border-border">
+                <h3 className="text-xl font-heading font-semibold">{t(projects[selectedProject].nameKey)}</h3>
+                <p className="text-sm text-muted-foreground mt-1">{t(projects[selectedProject].catKey)}</p>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </main>
   );
 };
