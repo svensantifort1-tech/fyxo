@@ -21,7 +21,7 @@ const packages = [
   },
   {
     name: "Standaard + onderhoud",
-    price: "€200",
+    price: "€300",
     period: "eenmalig + €50/maand",
     description: "Volledig ontzorgd. Wij regelen hosting, updates en onderhoud zodat jouw site altijd razendsnel blijft.",
     badge: "Meest gekozen",
