@@ -125,11 +125,15 @@ const Contact = () => {
               <div className="space-y-8">
                 <div>
                   <h3 className="font-heading font-semibold text-lg mb-4">Contactgegevens</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-muted-foreground">
-                      <Mail className="w-4 h-4 text-accent" />
-                      <span className="text-sm">info@fyxo.online</span>
-                    </div>
+                    <div className="space-y-4">
+                     <div className="flex items-center gap-3 text-muted-foreground">
+                       <Mail className="w-4 h-4 text-accent" />
+                       <span className="text-sm">info@fyxo.online</span>
+                     </div>
+                     <div className="flex items-center gap-3 text-muted-foreground">
+                       <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                       <span className="text-sm">Ouddorp, Nederland</span>
+                     </div>
                   </div>
                 </div>
 
