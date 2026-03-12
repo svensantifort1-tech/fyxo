@@ -2,32 +2,23 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Zap, Code, Gauge, ArrowRight } from "lucide-react";
-
-const stats = [
-{ value: "90", label: "PageSpeed Score", suffix: "+/100" },
-{ value: "<1s", label: "Laadtijd", suffix: "" },
-{ value: "0", label: "Onnodige plug-ins", suffix: "" }];
-
-
-const features = [
-{
-  icon: Code,
-  title: "Op Maat Gebouwd",
-  description: "Geen templates, geen page builders. Elke website wordt speciaal voor jouw bedrijf ontwikkeld."
-},
-{
-  icon: Zap,
-  title: "Razendsnelle Laadtijden",
-  description: "Schone code betekent bliksemsnelle websites. Beter voor je bezoekers én je Google-ranking."
-},
-{
-  icon: Gauge,
-  title: "Maximale PageSpeed",
-  description: "Waar WordPress-templates scoren rond de 40-60, scoren onze sites consistent 90+."
-}];
-
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Index = () => {
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: t("index.stat1.value"), label: t("index.stat1.label"), suffix: t("index.stat1.suffix") },
+    { value: t("index.stat2.value"), label: t("index.stat2.label"), suffix: "" },
+    { value: t("index.stat3.value"), label: t("index.stat3.label"), suffix: "" },
+  ];
+
+  const features = [
+    { icon: Code, title: t("index.feat1.title"), description: t("index.feat1.desc") },
+    { icon: Zap, title: t("index.feat2.title"), description: t("index.feat2.desc") },
+    { icon: Gauge, title: t("index.feat3.title"), description: t("index.feat3.desc") },
+  ];
+
   return (
     <main>
       {/* Hero */}
@@ -36,26 +27,24 @@ const Index = () => {
           <AnimatedSection>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm text-muted-foreground mb-8">
               <Zap className="w-3.5 h-3.5 text-accent" />
-              Supersnelle websites · 90+/100 PageSpeed
+              {t("index.badge")}
             </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
-              Websites die{" "}
-              <span className="text-gradient">razendsnel</span>{" "}
-              laden. Zonder compromis.
+              {t("index.hero.title1")}
+              <span className="text-gradient">{t("index.hero.highlight")}</span>
+              {t("index.hero.title2")}
             </h1>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              Fyxo bouwt snelle, op maat gemaakte websites met schone code. Geen zware templates,
-              geen overbodige plug-ins. Alleen pure performance die je concurrentie
-              verslaat in Google.
+              {t("index.hero.desc")}
             </p>
-            <p className="mt-4 text-lg md:text-xl font-heading font-semibold text-foreground">Complete website vanaf €300
-
+            <p className="mt-4 text-lg md:text-xl font-heading font-semibold text-foreground">
+              {t("index.hero.price")}
             </p>
           </AnimatedSection>
 
@@ -63,12 +52,12 @@ const Index = () => {
             <div className="mt-10 flex flex-wrap gap-4">
               <Button variant="hero" size="lg" asChild>
                 <Link to="/contact">
-                  Neem contact op
+                  {t("index.hero.cta")}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
               <Button variant="heroOutline" size="lg" asChild>
-                <Link to="/werkwijze">Hoe werkt het?</Link>
+                <Link to="/werkwijze">{t("index.hero.cta2")}</Link>
               </Button>
             </div>
           </AnimatedSection>
@@ -76,15 +65,15 @@ const Index = () => {
           {/* Stats */}
           <AnimatedSection delay={0.4}>
             <div className="mt-20 grid grid-cols-3 gap-8 max-w-lg">
-              {stats.map((stat) =>
-              <div key={stat.label}>
+              {stats.map((stat) => (
+                <div key={stat.label}>
                   <div className="text-3xl md:text-4xl font-heading font-bold">
                     {stat.value}
                     <span className="text-accent">{stat.suffix}</span>
                   </div>
                   <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
                 </div>
-              )}
+              ))}
             </div>
           </AnimatedSection>
         </div>
@@ -94,19 +83,18 @@ const Index = () => {
       <section className="section-padding">
         <div className="container-narrow">
           <AnimatedSection>
-            <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Waarom Fyxo?</p>
+            <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">{t("index.why")}</p>
             <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight max-w-3xl">
-              Snelheid is geen luxe. Het is de standaard.
+              {t("index.speed.title")}
             </h2>
             <p className="mt-4 text-muted-foreground text-lg max-w-2xl">
-              Elke seconde vertraging kost je bezoekers en omzet. Onze op maat gemaakte code 
-              laadt tot 10x sneller dan een gemiddelde WordPress-site.
+              {t("index.speed.desc")}
             </p>
           </AnimatedSection>
 
           <div className="mt-16 grid md:grid-cols-3 gap-8">
-            {features.map((feature, i) =>
-            <AnimatedSection key={feature.title} delay={i * 0.1}>
+            {features.map((feature, i) => (
+              <AnimatedSection key={feature.title} delay={i * 0.1}>
                 <div className="group rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30">
                   <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
                     <feature.icon className="w-6 h-6 text-accent" />
@@ -115,7 +103,7 @@ const Index = () => {
                   <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
               </AnimatedSection>
-            )}
+            ))}
           </div>
         </div>
       </section>
@@ -125,22 +113,22 @@ const Index = () => {
         <div className="container-narrow text-center">
           <AnimatedSection>
             <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight">
-              Klaar om je concurrentie voorbij te racen?
+              {t("index.cta.title")}
             </h2>
             <p className="mt-4 text-primary-foreground/70 text-lg max-w-xl mx-auto">
-              Vraag vandaag nog een vrijblijvend gesprek aan en ontdek wat een professionele website voor jouw bedrijf kan doen.
+              {t("index.cta.desc")}
             </p>
             <Button variant="hero" size="lg" className="mt-8" asChild>
               <Link to="/contact">
-                Neem contact op
+                {t("index.hero.cta")}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </Button>
           </AnimatedSection>
         </div>
       </section>
-    </main>);
-
+    </main>
+  );
 };
 
 export default Index;

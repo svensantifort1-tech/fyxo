@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const navLinks = [
-  { to: "/", label: "Home" },
-  { to: "/werkwijze", label: "Werkwijze" },
-  { to: "/portfolio", label: "Portfolio" },
-  { to: "/prijzen", label: "Prijzen" },
-  { to: "/over-ons", label: "Over ons" },
-  { to: "/contact", label: "Contact" },
+  { to: "/", key: "nav.home" },
+  { to: "/werkwijze", key: "nav.werkwijze" },
+  { to: "/portfolio", key: "nav.portfolio" },
+  { to: "/prijzen", key: "nav.prijzen" },
+  { to: "/over-ons", key: "nav.overons" },
+  { to: "/contact", key: "nav.contact" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { language, setLanguage, t } = useLanguage();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
@@ -33,15 +35,31 @@ const Navbar = () => {
                 location.pathname === link.to ? "text-accent" : "text-muted-foreground"
               }`}
             >
-              {link.label}
+              {t(link.key)}
             </Link>
           ))}
+          <button
+            onClick={() => setLanguage(language === "nl" ? "en" : "nl")}
+            className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-accent transition-colors border border-border rounded-full px-3 py-1.5"
+          >
+            <Globe className="w-3.5 h-3.5" />
+            {language === "nl" ? "EN" : "NL"}
+          </button>
         </div>
 
         {/* Mobile toggle */}
-        <button className="md:hidden" onClick={() => setOpen(!open)}>
-          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            onClick={() => setLanguage(language === "nl" ? "en" : "nl")}
+            className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground border border-border rounded-full px-2.5 py-1"
+          >
+            <Globe className="w-3 h-3" />
+            {language === "nl" ? "EN" : "NL"}
+          </button>
+          <button onClick={() => setOpen(!open)}>
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -63,7 +81,7 @@ const Navbar = () => {
                     location.pathname === link.to ? "text-accent" : "text-muted-foreground"
                   }`}
                 >
-                  {link.label}
+                  {t(link.key)}
                 </Link>
               ))}
             </div>
