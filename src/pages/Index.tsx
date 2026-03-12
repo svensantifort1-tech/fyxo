@@ -4,28 +4,28 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { Zap, Code, Gauge, ArrowRight } from "lucide-react";
 
 const stats = [
-  { value: "90", label: "PageSpeed Score", suffix: "+/100" },
-  { value: "<1s", label: "Laadtijd", suffix: "" },
-  { value: "0", label: "Onnodige plug-ins", suffix: "" },
-];
+{ value: "90", label: "PageSpeed Score", suffix: "+/100" },
+{ value: "<1s", label: "Laadtijd", suffix: "" },
+{ value: "0", label: "Onnodige plug-ins", suffix: "" }];
+
 
 const features = [
-  {
-    icon: Code,
-    title: "Op Maat Gebouwd",
-    description: "Geen templates, geen page builders. Elke website wordt speciaal voor jouw bedrijf ontwikkeld.",
-  },
-  {
-    icon: Zap,
-    title: "Razendsnelle Laadtijden",
-    description: "Schone code betekent bliksemsnelle websites. Beter voor je bezoekers én je Google-ranking.",
-  },
-  {
-    icon: Gauge,
-    title: "Maximale PageSpeed",
-    description: "Waar WordPress-templates scoren rond de 40-60, scoren onze sites consistent 90+.",
-  },
-];
+{
+  icon: Code,
+  title: "Op Maat Gebouwd",
+  description: "Geen templates, geen page builders. Elke website wordt speciaal voor jouw bedrijf ontwikkeld."
+},
+{
+  icon: Zap,
+  title: "Razendsnelle Laadtijden",
+  description: "Schone code betekent bliksemsnelle websites. Beter voor je bezoekers én je Google-ranking."
+},
+{
+  icon: Gauge,
+  title: "Maximale PageSpeed",
+  description: "Waar WordPress-templates scoren rond de 40-60, scoren onze sites consistent 90+."
+}];
+
 
 const Index = () => {
   return (
@@ -54,8 +54,8 @@ const Index = () => {
               geen overbodige plug-ins. Alleen pure performance die je concurrentie
               verslaat in Google.
             </p>
-            <p className="mt-4 text-lg md:text-xl font-heading font-semibold text-foreground">
-              Complete website vanaf €100
+            <p className="mt-4 text-lg md:text-xl font-heading font-semibold text-foreground">Complete website vanaf €200
+
             </p>
           </AnimatedSection>
 
@@ -76,15 +76,15 @@ const Index = () => {
           {/* Stats */}
           <AnimatedSection delay={0.4}>
             <div className="mt-20 grid grid-cols-3 gap-8 max-w-lg">
-              {stats.map((stat) => (
-                <div key={stat.label}>
+              {stats.map((stat) =>
+              <div key={stat.label}>
                   <div className="text-3xl md:text-4xl font-heading font-bold">
                     {stat.value}
                     <span className="text-accent">{stat.suffix}</span>
                   </div>
                   <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
                 </div>
-              ))}
+              )}
             </div>
           </AnimatedSection>
         </div>
@@ -105,8 +105,8 @@ const Index = () => {
           </AnimatedSection>
 
           <div className="mt-16 grid md:grid-cols-3 gap-8">
-            {features.map((feature, i) => (
-              <AnimatedSection key={feature.title} delay={i * 0.1}>
+            {features.map((feature, i) =>
+            <AnimatedSection key={feature.title} delay={i * 0.1}>
                 <div className="group rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30">
                   <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
                     <feature.icon className="w-6 h-6 text-accent" />
@@ -115,7 +115,7 @@ const Index = () => {
                   <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                 </div>
               </AnimatedSection>
-            ))}
+            )}
           </div>
         </div>
       </section>
@@ -139,8 +139,8 @@ const Index = () => {
           </AnimatedSection>
         </div>
       </section>
-    </main>
-  );
+    </main>);
+
 };
 
 export default Index;
