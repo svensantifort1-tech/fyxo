@@ -1,36 +1,36 @@
 import AnimatedSection from "@/components/AnimatedSection";
-import { Code2, Layers, Rocket, Shield } from "lucide-react";
+import { Users, Paintbrush, RefreshCw, Rocket } from "lucide-react";
 
 const steps = [
   {
-    icon: Layers,
-    title: "1. Strategie & Ontwerp",
-    description: "We beginnen met een kennismaking. Samen bespreken we jouw doelen, doelgroep en merkidentiteit. Daarna ontwerpen we een op maat gemaakt design.",
+    icon: Users,
+    title: "1. Kennismaking",
+    description: "We starten met een vrijblijvend gesprek. Wat zijn jouw wensen? Wie zijn je klanten? We brengen alles in kaart en leggen de tarieven helder uit. Geen kleine lettertjes.",
   },
   {
-    icon: Code2,
-    title: "2. Handmatige Ontwikkeling",
-    description: "Geen WordPress, geen Wix, geen drag-and-drop. We schrijven elke regel code met de hand. Het resultaat: een website die razendsnel laadt en perfect werkt op elk apparaat.",
+    icon: Paintbrush,
+    title: "2. Eerste ontwerp",
+    description: "Op basis van ons gesprek gaan we aan de slag met het design van jouw website. Je ontvangt een eerste versie die je in alle rust kunt bekijken.",
+  },
+  {
+    icon: RefreshCw,
+    title: "3. Correctieronde",
+    description: "Niet helemaal tevreden? Geen probleem. Je krijgt ruimte voor aanpassingen binnen de afgesproken uren. Samen maken we het perfect.",
   },
   {
     icon: Rocket,
-    title: "3. Optimalisatie & Lancering",
-    description: "Voordat je site live gaat, optimaliseren we alles: afbeeldingen, code, SEO-tags en laadtijden. We stoppen pas bij een PageSpeed score van 90+.",
-  },
-  {
-    icon: Shield,
-    title: "4. Onderhoud & Groei",
-    description: "Na de lancering monitoren we je site, voeren we updates uit en zorgen we dat alles razendsnel blijft. Jij focust op je bedrijf, wij op je website.",
+    title: "4. Oplevering",
+    description: "Je website gaat live! Wij zetten alles klaar op jouw eigen hosting of regelen dit via ons. Jij hoeft je nergens zorgen over te maken.",
   },
 ];
 
 const techPoints = [
-  { label: "Schone, semantische HTML", detail: "Beter leesbaar voor Google's crawlers." },
-  { label: "Geoptimaliseerde CSS & JavaScript", detail: "Geen ongebruikte code die je site vertraagt." },
-  { label: "Nul onnodige plug-ins", detail: "WordPress-sites laden gemiddeld 20+ plug-ins. Wij: nul." },
-  { label: "Server-side optimalisatie", detail: "Snelle hosting, caching en CDN inbegrepen." },
-  { label: "Mobile-first design", detail: "60%+ van je bezoekers komt via mobiel. Daar bouwen we voor." },
-  { label: "Conversie-gericht", detail: "Elke pagina is ontworpen om bezoekers om te zetten in klanten." },
+  { label: "Schone, leesbare code", detail: "Beter vindbaar in Google doordat zoekmachines je site makkelijker kunnen lezen." },
+  { label: "Geen onnodige rommel", detail: "Geen ongebruikte code die je site vertraagt. Alleen wat echt nodig is." },
+  { label: "Geen dure plug-ins nodig", detail: "WordPress-sites draaien op 20+ plug-ins. Wij bouwen alles in, zonder extra kosten." },
+  { label: "Snelle hosting inbegrepen", detail: "Je site draait op snelle servers met caching. Altijd snel, overal." },
+  { label: "Werkt perfect op mobiel", detail: "Meer dan 60% van je bezoekers komt via de telefoon. Daar houden we rekening mee." },
+  { label: "Gericht op meer klanten", detail: "Elke pagina is zo gebouwd dat bezoekers sneller contact opnemen of kopen." },
 ];
 
 const Werkwijze = () => (
@@ -40,12 +40,12 @@ const Werkwijze = () => (
         <AnimatedSection>
           <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">Werkwijze</p>
           <h1 className="text-4xl md:text-6xl font-heading font-bold tracking-tight max-w-3xl">
-            Technische superioriteit,{" "}
-            <span className="text-gradient">zonder complexiteit</span>
+            Simpel, persoonlijk{" "}
+            <span className="text-gradient">en zonder gedoe</span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-            Onze werkwijze draait om één ding: de snelste, schoonste website bouwen die mogelijk is. 
-            Geen shortcuts, geen compromissen.
+            Een website laten maken hoeft niet ingewikkeld te zijn. 
+            Wij houden het simpel: jij vertelt wat je nodig hebt, wij bouwen het.
           </p>
         </AnimatedSection>
 
@@ -71,7 +71,7 @@ const Werkwijze = () => (
       <div className="container-narrow">
         <AnimatedSection>
           <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">
-            Waarom handgemaakte code wint
+            Waarom een op maat gemaakte website wint
           </h2>
         </AnimatedSection>
         <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">

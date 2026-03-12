@@ -7,7 +7,7 @@ const Footer = () => (
         Fyxo<span className="text-accent">.</span>
       </Link>
       <p className="text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Fyxo. Handgemaakte websites met liefde voor code.
+        © {new Date().getFullYear()} Fyxo. Snelle websites met liefde voor code.
       </p>
       <div className="flex gap-6">
         {["Werkwijze", "Portfolio", "Prijzen", "Contact"].map((item) => (

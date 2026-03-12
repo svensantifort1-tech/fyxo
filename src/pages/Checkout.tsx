@@ -28,7 +28,7 @@ const packages = {
     price: "€300 eenmalig",
     description: "Volledige eigendom van je website",
     features: [
-      { icon: Paintbrush, label: "Handgemaakt design" },
+      { icon: Paintbrush, label: "Op maat gemaakt design" },
       { icon: Gauge, label: "Google PageSpeed 90+ score" },
     ],
   },
@@ -37,7 +37,7 @@ const packages = {
     price: "€200 eenmalig + €50/maand",
     description: "Volledig ontzorgd met hosting & onderhoud",
     features: [
-      { icon: Paintbrush, label: "Handgemaakt design" },
+      { icon: Paintbrush, label: "Op maat gemaakt design" },
       { icon: Gauge, label: "Google PageSpeed 90+ score" },
       { icon: Server, label: "Hosting & onderhoud inbegrepen" },
     ],

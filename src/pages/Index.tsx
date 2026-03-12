@@ -12,8 +12,8 @@ const stats = [
 const features = [
   {
     icon: Code,
-    title: "Handgeschreven Code",
-    description: "Geen templates, geen page builders. Elke regel code wordt met de hand geschreven voor jouw bedrijf.",
+    title: "Op Maat Gebouwd",
+    description: "Geen templates, geen page builders. Elke website wordt speciaal voor jouw bedrijf ontwikkeld.",
   },
   {
     icon: Zap,
@@ -36,7 +36,7 @@ const Index = () => {
           <AnimatedSection>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm text-muted-foreground mb-8">
               <Zap className="w-3.5 h-3.5 text-accent" />
-              Handgemaakte websites · 90+/100 PageSpeed
+              Supersnelle websites · 90+/100 PageSpeed
             </div>
           </AnimatedSection>
 
@@ -50,9 +50,12 @@ const Index = () => {
 
           <AnimatedSection delay={0.2}>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              Fyxo bouwt handgemaakte websites met schone code. Geen zware templates,
+              Fyxo bouwt snelle, op maat gemaakte websites met schone code. Geen zware templates,
               geen overbodige plug-ins. Alleen pure performance die je concurrentie
               verslaat in Google.
+            </p>
+            <p className="mt-4 text-lg md:text-xl font-heading font-semibold text-foreground">
+              Complete website vanaf €100
             </p>
           </AnimatedSection>
 
@@ -60,7 +63,7 @@ const Index = () => {
             <div className="mt-10 flex flex-wrap gap-4">
               <Button variant="hero" size="lg" asChild>
                 <Link to="/contact">
-                  Start jouw project
+                  Neem contact op
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
@@ -96,7 +99,7 @@ const Index = () => {
               Snelheid is geen luxe. Het is de standaard.
             </h2>
             <p className="mt-4 text-muted-foreground text-lg max-w-2xl">
-              Elke seconde vertraging kost je bezoekers en omzet. Onze handgemaakte code 
+              Elke seconde vertraging kost je bezoekers en omzet. Onze op maat gemaakte code 
               laadt tot 10x sneller dan een gemiddelde WordPress-site.
             </p>
           </AnimatedSection>
@@ -125,7 +128,7 @@ const Index = () => {
               Klaar om je concurrentie voorbij te racen?
             </h2>
             <p className="mt-4 text-primary-foreground/70 text-lg max-w-xl mx-auto">
-              Vraag vandaag nog een vrijblijvend gesprek aan en ontdek wat een handgemaakte website voor jouw bedrijf kan doen.
+              Vraag vandaag nog een vrijblijvend gesprek aan en ontdek wat een professionele website voor jouw bedrijf kan doen.
             </p>
             <Button variant="hero" size="lg" className="mt-8" asChild>
               <Link to="/contact">
