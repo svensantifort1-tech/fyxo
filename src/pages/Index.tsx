@@ -36,6 +36,7 @@ const Index = () => {
               {t("index.hero.title1")}
               <span className="text-gradient">{t("index.hero.highlight")}</span>
               {t("index.hero.title2")}
+              <span className="whitespace-nowrap">{t("index.hero.title3")}</span>
             </h1>
           </AnimatedSection>
 
