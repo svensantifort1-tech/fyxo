@@ -134,7 +134,7 @@
   display: flex;
   align-items: center;
   will-change: offset-distance, opacity;
-  contain: strict;
+  contain: layout style;
 }
 
 .jet-trail {
