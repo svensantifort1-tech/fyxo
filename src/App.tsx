@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageTransition from "@/components/PageTransition";
 import Index from "./pages/Index";
 import Werkwijze from "./pages/Werkwijze";
 
@@ -25,17 +26,19 @@ const AppLayout = () => {
   return (
     <>
       {!isMinimalLayout && <Navbar />}
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/werkwijze" element={<Werkwijze />} />
-        
-        <Route path="/prijzen" element={<Prijzen />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/over-ons" element={<OverOns />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/bedankt" element={<Bedankt />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <PageTransition>
+        <Routes location={location}>
+          <Route path="/" element={<Index />} />
+          <Route path="/werkwijze" element={<Werkwijze />} />
+          
+          <Route path="/prijzen" element={<Prijzen />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/over-ons" element={<OverOns />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/bedankt" element={<Bedankt />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </PageTransition>
       {!isMinimalLayout && <Footer />}
     </>
   );
