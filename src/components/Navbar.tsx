@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import fyxoLogo from "@/assets/fyxo-logo.png";
 
 const navLinks = [
   { to: "/", key: "nav.home" },
@@ -21,8 +22,8 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container-narrow flex items-center justify-between h-16 px-6">
-        <Link to="/" className="font-heading text-2xl font-bold tracking-tight">
-          Fyxo<span className="text-accent">.</span>
+        <Link to="/" className="flex items-center">
+          <img src={fyxoLogo} alt="Fyxo" className="h-7" />
         </Link>
 
         {/* Desktop */}
