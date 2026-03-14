@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
+import LightningBackground from "@/components/LightningBackground";
 import { Code, Gauge, ArrowRight, Zap } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
