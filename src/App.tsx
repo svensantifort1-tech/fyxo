@@ -28,7 +28,7 @@ const AppLayout = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/werkwijze" element={<Werkwijze />} />
-        <Route path="/portfolio" element={<Portfolio />} />
+        
         <Route path="/prijzen" element={<Prijzen />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/over-ons" element={<OverOns />} />
