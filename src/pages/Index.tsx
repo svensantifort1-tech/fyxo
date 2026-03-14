@@ -53,13 +53,7 @@ const Index = () => {
     <main>
       {/* Hero */}
       <section className="relative px-6 pt-36 pb-28 md:px-12 md:pt-44 md:pb-32 lg:px-24 lg:pt-52 lg:pb-36">
-        {/* Page-wide jet animation */}
-        <div className="fixed inset-0 pointer-events-none z-20 overflow-hidden" aria-hidden="true">
-          <div className="jet-flight">
-            <div className="jet-trail" />
-            <JetSvg />
-          </div>
-        </div>
+
 
         <div className="container-narrow relative">
           <AnimatedSection delay={0.1}>
