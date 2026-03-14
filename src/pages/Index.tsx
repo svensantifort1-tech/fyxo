@@ -62,6 +62,13 @@ const Index = () => {
               <span className="text-gradient">{t("index.hero.highlight")}</span>
               {t("index.hero.title2")}
             </h1>
+            {/* Jet lands here after fly-in */}
+            <div className="relative mt-6 h-14 pointer-events-none" aria-hidden="true">
+              <div className="jet-flyin">
+                <div className="jet-trail" />
+                <JetSvg />
+              </div>
+            </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
