@@ -10,23 +10,29 @@ import { useLanguage } from "@/i18n/LanguageContext";
  */
 const JetSvg = () => (
   <svg
-    width="28"
-    height="28"
-    viewBox="0 0 28 28"
+    width="56"
+    height="56"
+    viewBox="0 0 64 64"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className="jet-icon"
   >
-    {/* Minimal jet silhouette pointing right */}
-    <path
-      d="M4 14L10 10L22 13.5L24 14L22 14.5L10 18L4 14Z"
-      fill="url(#jet-gradient)"
-    />
+    {/* Fuselage */}
+    <path d="M8 32L18 28L52 31L58 32L52 33L18 36L8 32Z" fill="url(#jet-grad)" />
+    {/* Nose cone */}
+    <path d="M52 31L62 32L52 33L52 31Z" fill="url(#jet-grad)" opacity="0.9" />
+    {/* Main wings */}
+    <path d="M22 32L28 18L32 28L22 32Z" fill="url(#jet-grad)" opacity="0.85" />
+    <path d="M22 32L28 46L32 36L22 32Z" fill="url(#jet-grad)" opacity="0.85" />
     {/* Tail fins */}
-    <path d="M6 14L10 8L11 10L6 14Z" fill="url(#jet-gradient)" opacity="0.7" />
-    <path d="M6 14L10 20L11 18L6 14Z" fill="url(#jet-gradient)" opacity="0.7" />
+    <path d="M10 32L14 22L16 28L10 32Z" fill="url(#jet-grad)" opacity="0.65" />
+    <path d="M10 32L14 42L16 36L10 32Z" fill="url(#jet-grad)" opacity="0.65" />
+    {/* Vertical stabilizer */}
+    <path d="M12 32L15 24L17 30L12 32Z" fill="url(#jet-grad)" opacity="0.5" />
+    {/* Engine glow */}
+    <ellipse cx="8" cy="32" rx="3" ry="1.5" fill="hsl(217 91% 60%)" opacity="0.4" />
     <defs>
-      <linearGradient id="jet-gradient" x1="4" y1="14" x2="24" y2="14" gradientUnits="userSpaceOnUse">
+      <linearGradient id="jet-grad" x1="8" y1="32" x2="62" y2="32" gradientUnits="userSpaceOnUse">
         <stop stopColor="hsl(217 91% 60%)" />
         <stop offset="1" stopColor="hsl(200 80% 55%)" />
       </linearGradient>
