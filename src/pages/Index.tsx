@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
+import LightningBackground from "@/components/LightningBackground";
 import { Code, Gauge, ArrowRight, Zap } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -23,119 +24,7 @@ const Index = () => {
     <main>
       {/* Hero */}
       <section className="relative px-6 pt-36 pb-28 md:px-12 md:pt-44 md:pb-32 lg:px-24 lg:pt-52 lg:pb-36 overflow-hidden">
-        {/* Blurred lightning background */}
-        <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          {/* Main lightning bolt - bright core */}
-          <svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 1400 900"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <filter id="lightning-glow-heavy">
-                <feGaussianBlur stdDeviation="28" result="blur1" />
-                <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur2" />
-                <feMerge>
-                  <feMergeNode in="blur1" />
-                  <feMergeNode in="blur2" />
-                </feMerge>
-              </filter>
-              <filter id="lightning-glow-soft">
-                <feGaussianBlur stdDeviation="45" />
-              </filter>
-              <filter id="lightning-glow-mid">
-                <feGaussianBlur stdDeviation="14" />
-              </filter>
-              <linearGradient id="bolt-grad-main" x1="1" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="hsl(217, 91%, 70%)" stopOpacity="0.9" />
-                <stop offset="40%" stopColor="hsl(210, 85%, 65%)" stopOpacity="0.7" />
-                <stop offset="100%" stopColor="hsl(200, 80%, 55%)" stopOpacity="0.3" />
-              </linearGradient>
-              <linearGradient id="bolt-grad-glow" x1="1" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="hsl(217, 91%, 60%)" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="hsl(200, 80%, 55%)" stopOpacity="0.1" />
-              </linearGradient>
-            </defs>
-
-            {/* Wide ambient glow */}
-            <path
-              d="M1250 20 L1100 160 L1150 175 L980 340 L1040 360 L850 530 L920 550 L720 740 L680 700 L740 520 L670 540 L870 340 L800 360 L1000 170 L940 190 Z"
-              fill="none"
-              stroke="hsl(217, 91%, 60%)"
-              strokeWidth="40"
-              filter="url(#lightning-glow-soft)"
-              opacity="0.25"
-            />
-
-            {/* Main bolt */}
-            <path
-              d="M1250 20 L1100 160 L1150 175 L980 340 L1040 360 L850 530 L920 550 L720 740"
-              fill="none"
-              stroke="url(#bolt-grad-main)"
-              strokeWidth="6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              filter="url(#lightning-glow-heavy)"
-              opacity="0.8"
-            />
-
-            {/* Branch 1 - from top */}
-            <path
-              d="M1100 160 L1030 120 L990 200 L940 170"
-              fill="none"
-              stroke="url(#bolt-grad-glow)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              filter="url(#lightning-glow-mid)"
-              opacity="0.5"
-            />
-
-            {/* Branch 2 - mid section */}
-            <path
-              d="M980 340 L920 290 L880 350 L830 310 L800 380"
-              fill="none"
-              stroke="url(#bolt-grad-glow)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              filter="url(#lightning-glow-mid)"
-              opacity="0.45"
-            />
-
-            {/* Branch 3 - lower */}
-            <path
-              d="M850 530 L790 490 L760 540 L710 510"
-              fill="none"
-              stroke="url(#bolt-grad-glow)"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              filter="url(#lightning-glow-mid)"
-              opacity="0.35"
-            />
-
-            {/* Secondary bolt - thinner, offset */}
-            <path
-              d="M1180 80 L1060 200 L1100 220 L960 380 L1010 395 L840 570 L890 585 L760 720"
-              fill="none"
-              stroke="url(#bolt-grad-glow)"
-              strokeWidth="3"
-              strokeLinecap="round"
-              filter="url(#lightning-glow-heavy)"
-              opacity="0.35"
-            />
-
-            {/* Small branch from secondary */}
-            <path
-              d="M960 380 L900 350 L870 400"
-              fill="none"
-              stroke="url(#bolt-grad-glow)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              filter="url(#lightning-glow-mid)"
-              opacity="0.3"
-            />
-          </svg>
-        </div>
+        <LightningBackground />
         <div className="container-narrow relative">
           <AnimatedSection delay={0.1}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
