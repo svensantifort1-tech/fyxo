@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
+import fyxoLogo from "@/assets/fyxo-logo.png";
 
 const navLinks = [
   { to: "/", key: "nav.home" },
