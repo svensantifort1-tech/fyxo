@@ -8,7 +8,7 @@ import fyxoLogo from "@/assets/fyxo-logo.png";
 const navLinks = [
   { to: "/", key: "nav.home" },
   { to: "/werkwijze", key: "nav.werkwijze" },
-  { to: "/portfolio", key: "nav.portfolio" },
+  
   { to: "/prijzen", key: "nav.prijzen" },
   { to: "/over-ons", key: "nav.overons" },
   { to: "/contact", key: "nav.contact" },
