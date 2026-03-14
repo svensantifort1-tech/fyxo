@@ -230,7 +230,7 @@ export const translations: Translations = {
     "index.hero.highlight": "blazingly fast",
     "index.hero.title2": ". ",
     "index.hero.title3": "No compromises.",
-    "index.hero.desc": "Fyxo builds fast, custom-made websites with clean code. No heavy templates, no unnecessary plugins. Just pure performance that outranks your competition on Google.",
+    "index.hero.desc": "Custom-built websites with clean code. No templates, no plugins — just pure performance.",
     "index.hero.price": "Complete website from €300",
     "index.hero.cta": "Get in touch",
     "index.hero.cta2": "How does it work?",
