@@ -47,7 +47,7 @@ const DeviceShowcase = () => {
             <div className="bg-[hsl(var(--foreground)/0.9)] rounded-xl p-[2px] md:p-[3px]">
               <div className="relative rounded-[10px] md:rounded-xl overflow-hidden bg-muted aspect-[9/19]">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[4%] bg-[hsl(var(--foreground)/0.9)] rounded-b-lg z-10" />
-                <img src={phoneImg} alt="Mobiele weergave" className="w-full h-full object-cover object-top" />
+                <img src={phoneImg} alt="Mobiele weergave" className="w-full h-full object-cover object-center" />
               </div>
             </div>
           </div>
