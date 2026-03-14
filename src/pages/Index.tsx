@@ -22,7 +22,41 @@ const Index = () => {
   return (
     <main>
       {/* Hero */}
-      <section className="relative px-6 pt-36 pb-28 md:px-12 md:pt-44 md:pb-32 lg:px-24 lg:pt-52 lg:pb-36">
+      <section className="relative px-6 pt-36 pb-28 md:px-12 md:pt-44 md:pb-32 lg:px-24 lg:pt-52 lg:pb-36 overflow-hidden">
+        {/* Blurred lightning background */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-0"
+          viewBox="0 0 1200 800"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <filter id="lightning-blur">
+              <feGaussianBlur stdDeviation="18" />
+            </filter>
+            <linearGradient id="lightning-grad" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="hsl(217 91% 60%)" stopOpacity="0.5" />
+              <stop offset="50%" stopColor="hsl(200 80% 55%)" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="hsl(217 91% 60%)" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M1050 30 L920 180 L980 200 L820 380 L890 400 L700 580 L780 600 L580 780 L620 720 L560 740 L680 540 L610 560 L800 340 L730 360 L940 160 L870 180 Z"
+            fill="none"
+            stroke="url(#lightning-grad)"
+            strokeWidth="3"
+            filter="url(#lightning-blur)"
+            opacity="0.6"
+          />
+          <path
+            d="M1000 60 L880 200 L930 215 L790 370 L850 385 L680 560 L740 575 L560 760"
+            fill="none"
+            stroke="url(#lightning-grad)"
+            strokeWidth="1.5"
+            filter="url(#lightning-blur)"
+            opacity="0.35"
+          />
+        </svg>
         <div className="container-narrow relative">
           <AnimatedSection delay={0.1}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
