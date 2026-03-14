@@ -3,7 +3,6 @@ import { useLanguage } from "@/i18n/LanguageContext";
 
 const footerLinks = [
   { key: "nav.werkwijze", to: "/werkwijze" },
-  { key: "nav.portfolio", to: "/portfolio" },
   { key: "nav.prijzen", to: "/prijzen" },
   { key: "nav.contact", to: "/contact" },
 ];
