@@ -104,28 +104,38 @@
   }
 }
 
-/* Jet fighter animation around the headline */
-@keyframes jet-fly {
+/* Jet fly-in animation — enters from left, arcs across, lands below headline */
+@keyframes jet-flyin {
   0% {
     offset-distance: 0%;
     opacity: 0;
   }
-  5% {
-    opacity: 0.55;
+  8% {
+    opacity: 0.7;
   }
-  90% {
-    opacity: 0.55;
+  85% {
+    opacity: 0.7;
   }
   100% {
     offset-distance: 100%;
-    opacity: 0;
+    opacity: 0.5;
   }
 }
 
-.jet-flight {
-  offset-path: path("M -80 100 C 200 -50, 600 50, 1000 -30 S 1400 200, 1500 400 C 1500 600, 1200 700, 800 750 S 200 800, -80 600 C -120 400, -100 200, -80 100");
+@keyframes trail-fade {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.jet-flyin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Arc: start far left off-screen, sweep right and up, then curve down to land at ~left:40px */
+  offset-path: path("M -600 0 C -300 -120, 200 -200, 500 -100 S 700 0, 500 20 C 350 35, 150 25, 40 8");
   offset-rotate: auto;
-  animation: jet-fly 8s cubic-bezier(0.4, 0, 0.6, 1) 0.5s infinite;
+  animation: jet-flyin 2s cubic-bezier(0.22, 0.6, 0.36, 1) 0.8s both;
   display: flex;
   align-items: center;
   will-change: offset-distance, opacity;
@@ -137,6 +147,7 @@
   margin-right: -6px;
   background: linear-gradient(90deg, transparent, hsl(217 91% 60% / 0.4), hsl(200 80% 55% / 0.15));
   border-radius: 1.5px;
+  animation: trail-fade 2s cubic-bezier(0.22, 0.6, 0.36, 1) 0.8s both;
 }
 
 .jet-icon {
@@ -147,8 +158,12 @@
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .jet-flight {
+  .jet-flyin {
     animation: none;
+    opacity: 0.5;
+    offset-distance: 100%;
+  }
+  .jet-trail {
     display: none;
   }
 }
