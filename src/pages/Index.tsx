@@ -33,9 +33,9 @@ const Index = () => {
 
           <AnimatedSection delay={0.1}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
-              {t("index.hero.title1")}
-              <span className="text-gradient">{t("index.hero.highlight")}</span>
+              <span className="whitespace-nowrap">{t("index.hero.title1")}<span className="text-gradient">{t("index.hero.highlight")}</span></span>
               {t("index.hero.title2")}
+              <br />
               <span className="whitespace-nowrap">{t("index.hero.title3")}</span>
             </h1>
           </AnimatedSection>
