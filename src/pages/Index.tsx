@@ -3,6 +3,34 @@ import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import { Zap, Code, Gauge, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { motion } from "framer-motion";
+
+const SpeedLines = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    {/* Subtle horizontal streaks suggesting motion */}
+    <motion.div
+      initial={{ x: "-100%", opacity: 0 }}
+      whileInView={{ x: "200%", opacity: [0, 0.15, 0.15, 0] }}
+      viewport={{ once: true }}
+      transition={{ duration: 2, delay: 0.8, ease: "easeOut" }}
+      className="absolute top-[22%] left-0 w-48 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent"
+    />
+    <motion.div
+      initial={{ x: "-100%", opacity: 0 }}
+      whileInView={{ x: "200%", opacity: [0, 0.1, 0.1, 0] }}
+      viewport={{ once: true }}
+      transition={{ duration: 2.5, delay: 1, ease: "easeOut" }}
+      className="absolute top-[38%] left-0 w-64 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent"
+    />
+    <motion.div
+      initial={{ x: "-100%", opacity: 0 }}
+      whileInView={{ x: "200%", opacity: [0, 0.08, 0.08, 0] }}
+      viewport={{ once: true }}
+      transition={{ duration: 2.2, delay: 1.2, ease: "easeOut" }}
+      className="absolute top-[55%] left-0 w-40 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent"
+    />
+  </div>
+);
 
 const Index = () => {
   const { t } = useLanguage();
@@ -22,17 +50,18 @@ const Index = () => {
   return (
     <main>
       {/* Hero */}
-      <section className="section-padding pt-32 md:pt-40 lg:pt-48">
-        <div className="container-narrow">
+      <section className="relative px-6 pt-36 pb-28 md:px-12 md:pt-44 md:pb-32 lg:px-24 lg:pt-52 lg:pb-36">
+        <SpeedLines />
+        <div className="container-narrow relative">
           <AnimatedSection>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm text-muted-foreground mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm text-muted-foreground">
               <Zap className="w-3.5 h-3.5 text-accent" />
               {t("index.badge")}
             </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
+            <h1 className="mt-8 text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
               {t("index.hero.title1")}
               <span className="text-gradient">{t("index.hero.highlight")}</span>
               {t("index.hero.title2")}
@@ -40,7 +69,7 @@ const Index = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+            <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
               {t("index.hero.desc")}
             </p>
             <p className="mt-4 text-lg md:text-xl font-heading font-semibold text-foreground">
@@ -71,7 +100,7 @@ const Index = () => {
                     {stat.value}
                     <span className="text-accent">{stat.suffix}</span>
                   </div>
-                  <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+                  <div className="text-sm text-muted-foreground mt-1.5">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -79,23 +108,25 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Speed comparison */}
-      <section className="section-padding">
+      {/* Features */}
+      <section className="px-6 py-28 md:px-12 md:py-32 lg:px-24 lg:py-36 border-t border-border/50">
         <div className="container-narrow">
           <AnimatedSection>
             <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">{t("index.why")}</p>
             <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight max-w-3xl">
               {t("index.speed.title")}
             </h2>
-            <p className="mt-4 text-muted-foreground text-lg max-w-2xl">
+            <p className="mt-5 text-muted-foreground text-lg max-w-2xl leading-relaxed">
               {t("index.speed.desc")}
             </p>
           </AnimatedSection>
 
-          <div className="mt-16 grid md:grid-cols-3 gap-8">
+          <div className="mt-16 grid md:grid-cols-3 gap-6">
             {features.map((feature, i) => (
               <AnimatedSection key={feature.title} delay={i * 0.1}>
-                <div className="group rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30">
+                <div className="group relative rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30 overflow-hidden">
+                  {/* Subtle speed accent — a tiny gradient streak at the top */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
                     <feature.icon className="w-6 h-6 text-accent" />
                   </div>
@@ -109,16 +140,19 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-primary text-primary-foreground">
+      <section className="px-6 py-28 md:px-12 md:py-32 lg:px-24 lg:py-36 bg-primary text-primary-foreground">
         <div className="container-narrow text-center">
           <AnimatedSection>
+            <div className="inline-flex items-center gap-2 mb-6">
+              <Zap className="w-5 h-5 text-accent" />
+            </div>
             <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight">
               {t("index.cta.title")}
             </h2>
-            <p className="mt-4 text-primary-foreground/70 text-lg max-w-xl mx-auto">
+            <p className="mt-5 text-primary-foreground/70 text-lg max-w-xl mx-auto leading-relaxed">
               {t("index.cta.desc")}
             </p>
-            <Button variant="hero" size="lg" className="mt-8" asChild>
+            <Button variant="hero" size="lg" className="mt-10" asChild>
               <Link to="/contact">
                 {t("index.hero.cta")}
                 <ArrowRight className="w-4 h-4" />
