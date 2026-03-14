@@ -57,7 +57,7 @@ const Index = () => {
 
           {/* Stats */}
           <AnimatedSection delay={0.4}>
-            <div className="mt-20 grid grid-cols-3 gap-8 max-w-lg">
+            <div className="mt-12 grid grid-cols-3 gap-8 max-w-lg">
               {stats.map((stat) => (
                 <div key={stat.label}>
                   <div className="text-3xl md:text-4xl font-heading font-bold">
