@@ -4,42 +4,6 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { Code, Gauge, ArrowRight, Zap } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
-/**
- * Minimal SVG jet icon — a sleek, modern silhouette.
- * Rendered as an inline SVG so we can style the trail with CSS gradients.
- */
-const JetSvg = () => (
-  <svg
-    width="56"
-    height="56"
-    viewBox="0 0 64 64"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className="jet-icon"
-  >
-    {/* Fuselage */}
-    <path d="M8 32L18 28L52 31L58 32L52 33L18 36L8 32Z" fill="url(#jet-grad)" />
-    {/* Nose cone */}
-    <path d="M52 31L62 32L52 33L52 31Z" fill="url(#jet-grad)" opacity="0.9" />
-    {/* Main wings */}
-    <path d="M22 32L28 18L32 28L22 32Z" fill="url(#jet-grad)" opacity="0.85" />
-    <path d="M22 32L28 46L32 36L22 32Z" fill="url(#jet-grad)" opacity="0.85" />
-    {/* Tail fins */}
-    <path d="M10 32L14 22L16 28L10 32Z" fill="url(#jet-grad)" opacity="0.65" />
-    <path d="M10 32L14 42L16 36L10 32Z" fill="url(#jet-grad)" opacity="0.65" />
-    {/* Vertical stabilizer */}
-    <path d="M12 32L15 24L17 30L12 32Z" fill="url(#jet-grad)" opacity="0.5" />
-    {/* Engine glow */}
-    <ellipse cx="8" cy="32" rx="3" ry="1.5" fill="hsl(217 91% 60%)" opacity="0.4" />
-    <defs>
-      <linearGradient id="jet-grad" x1="8" y1="32" x2="62" y2="32" gradientUnits="userSpaceOnUse">
-        <stop stopColor="hsl(217 91% 60%)" />
-        <stop offset="1" stopColor="hsl(200 80% 55%)" />
-      </linearGradient>
-    </defs>
-  </svg>
-);
-
 const Index = () => {
   const { t } = useLanguage();
 
@@ -59,8 +23,6 @@ const Index = () => {
     <main>
       {/* Hero */}
       <section className="relative px-6 pt-36 pb-28 md:px-12 md:pt-44 md:pb-32 lg:px-24 lg:pt-52 lg:pb-36">
-
-
         <div className="container-narrow relative">
           <AnimatedSection delay={0.1}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
@@ -68,13 +30,6 @@ const Index = () => {
               <span className="text-gradient">{t("index.hero.highlight")}</span>
               {t("index.hero.title2")}
             </h1>
-            {/* Jet lands here after fly-in */}
-            <div className="relative mt-6 h-14 pointer-events-none" aria-hidden="true">
-              <div className="jet-flyin">
-                <div className="jet-trail" />
-                <JetSvg />
-              </div>
-            </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
