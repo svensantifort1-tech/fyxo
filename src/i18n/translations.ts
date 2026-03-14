@@ -19,7 +19,7 @@ export const translations: Translations = {
     "index.hero.highlight": "razendsnel",
     "index.hero.title2": " laden.",
     "index.hero.title3": "Zonder compromis.",
-    "index.hero.desc": "Fyxo bouwt snelle, op maat gemaakte websites met schone code. Geen zware templates, geen overbodige plug-ins. Alleen pure performance die je concurrentie verslaat in Google.",
+    "index.hero.desc": "Op maat gemaakte websites met schone code. Geen templates, geen plug-ins — alleen pure performance.",
     "index.hero.price": "Complete website vanaf €300",
     "index.hero.cta": "Neem contact op",
     "index.hero.cta2": "Hoe werkt het?",
