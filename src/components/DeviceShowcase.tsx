@@ -47,18 +47,8 @@ const DeviceShowcase = () => {
   const next = () => setActiveIndex((i) => (i === projects.length - 1 ? 0 : i + 1));
 
   return (
-    <section className="section-padding overflow-hidden relative bg-background">
+    <section className="overflow-hidden relative bg-background">
       <div className="container-narrow text-center relative z-10">
-        <p className="text-sm font-medium text-accent uppercase tracking-widest mb-4">
-          {t("portfolio.label")}
-        </p>
-        <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight text-foreground">
-          {t("portfolio.showcase.title")}
-        </h2>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          {t("portfolio.showcase.desc")}
-        </p>
-
         {/* Device group */}
         <div className="relative mt-14 mx-auto max-w-5xl flex items-end justify-center" style={{ minHeight: "clamp(280px, 45vw, 520px)" }}>
           {/* MacBook (desktop) */}
