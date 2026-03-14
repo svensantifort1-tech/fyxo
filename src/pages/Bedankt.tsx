@@ -35,19 +35,6 @@ const Bedankt = () => {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection delay={0.2}>
-          <div className="mt-14 rounded-2xl border border-border bg-card p-8">
-            <p className="text-sm text-muted-foreground mb-4">
-              {t("bedankt.portfolio.desc")}
-            </p>
-            <Button asChild variant="hero" size="lg">
-              <Link to="/portfolio" className="inline-flex items-center gap-2">
-                {t("bedankt.portfolio.cta")}
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
-          </div>
-        </AnimatedSection>
 
         <AnimatedSection delay={0.3}>
           <Link
