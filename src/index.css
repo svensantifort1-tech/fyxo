@@ -104,29 +104,3 @@
   }
 }
 
-/* Page transition jet */
-@keyframes jet-across {
-  0% {
-    offset-distance: 0%;
-    opacity: 0;
-  }
-  5% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-  100% {
-    offset-distance: 100%;
-    opacity: 0;
-  }
-}
-
-.jet-transition {
-  position: fixed;
-  z-index: 100;
-  offset-path: path("M -100 50 C 200 30, 600 60, 1000 40 S 1600 50, 2100 45");
-  offset-rotate: auto;
-  animation: jet-across 0.8s cubic-bezier(0.22, 0.6, 0.36, 1) forwards;
-}
-
