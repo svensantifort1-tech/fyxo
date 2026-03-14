@@ -37,7 +37,7 @@ const DeviceShowcase = () => {
           <div className="absolute right-[4%] md:right-[8%] bottom-0 z-20 w-[28%] max-w-[240px]">
             <div className="bg-[hsl(var(--foreground)/0.9)] rounded-xl p-[3px] md:p-[4px]">
               <div className="rounded-lg overflow-hidden bg-muted aspect-[3/4]">
-                <img src={tabletImg} alt="Tablet weergave" className="w-full h-full object-cover object-top" />
+                <img src={tabletImg} alt="Tablet weergave" className="w-full h-full object-cover object-center" />
               </div>
             </div>
           </div>
