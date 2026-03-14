@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Index from "./pages/Index";
 import Werkwijze from "./pages/Werkwijze";
-import Portfolio from "./pages/Portfolio";
+
 import Prijzen from "./pages/Prijzen";
 import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
