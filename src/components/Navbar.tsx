@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container-narrow flex items-center justify-between h-16 px-6">
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center -ml-4">
           <img src={fyxoLogo} alt="Fyxo" className="h-28" />
         </Link>
 
