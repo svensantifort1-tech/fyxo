@@ -17,7 +17,7 @@ export const translations: Translations = {
     "index.badge": "Supersnelle websites · 90+/100 PageSpeed",
     "index.hero.title1": "Websites die ",
     "index.hero.highlight": "razendsnel",
-    "index.hero.title2": " laden. ",
+    "index.hero.title2": " laden.",
     "index.hero.title3": "Zonder compromis.",
     "index.hero.desc": "Fyxo bouwt snelle, op maat gemaakte websites met schone code. Geen zware templates, geen overbodige plug-ins. Alleen pure performance die je concurrentie verslaat in Google.",
     "index.hero.price": "Complete website vanaf €300",
