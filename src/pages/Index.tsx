@@ -53,25 +53,21 @@ const Index = () => {
     <main>
       {/* Hero */}
       <section className="relative px-6 pt-36 pb-28 md:px-12 md:pt-44 md:pb-32 lg:px-24 lg:pt-52 lg:pb-36">
-        <div className="container-narrow relative">
-          {/* Headline with jet animation */}
-          <AnimatedSection delay={0.1}>
-            <div className="relative hero-jet-container">
-              {/* Jet + trail animation layer — behind text */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-                <div className="jet-flight">
-                  {/* Motion trail */}
-                  <div className="jet-trail" />
-                  <JetSvg />
-                </div>
-              </div>
+        {/* Page-wide jet animation */}
+        <div className="fixed inset-0 pointer-events-none z-20 overflow-hidden" aria-hidden="true">
+          <div className="jet-flight">
+            <div className="jet-trail" />
+            <JetSvg />
+          </div>
+        </div>
 
-              <h1 className="relative z-10 text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
-                {t("index.hero.title1")}
-                <span className="text-gradient">{t("index.hero.highlight")}</span>
-                {t("index.hero.title2")}
-              </h1>
-            </div>
+        <div className="container-narrow relative">
+          <AnimatedSection delay={0.1}>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
+              {t("index.hero.title1")}
+              <span className="text-gradient">{t("index.hero.highlight")}</span>
+              {t("index.hero.title2")}
+            </h1>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
