@@ -80,6 +80,8 @@ export const translations: Translations = {
     "portfolio.highlight": "onze websites",
     "portfolio.desc": "Bekijk een selectie van websites die wij hebben gebouwd. Klik op een voorbeeld om het in detail te bekijken.",
     "portfolio.tagline": "Wij bouwen websites die op elk apparaat razendsnel laden",
+    "portfolio.showcase.title": "Onze resultaten op elk scherm",
+    "portfolio.showcase.desc": "Razendsnelle websites die perfect schalen van desktop naar mobiel, zonder compromis.",
     "portfolio.p1.name": "Website voor Loodgieters",
     "portfolio.p1.cat": "Loodgieterij & Installatie",
     "portfolio.p2.name": "Website voor Massagesalons",
