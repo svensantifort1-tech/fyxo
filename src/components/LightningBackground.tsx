@@ -1,100 +1,225 @@
+import { useEffect, useRef, useCallback } from "react";
+
+interface Point { x: number; y: number }
+interface Branch { points: Point[]; width: number; opacity: number }
+interface Bolt { branches: Branch[]; birth: number; fadeIn: number; hold: number; fadeOut: number }
+interface Spark { x: number; y: number; vx: number; vy: number; life: number; maxLife: number; size: number }
+
 const LightningBackground = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const createPoints = useCallback(
+    (x1: number, y1: number, x2: number, y2: number, segs: number, jitter: number): Point[] => {
+      const pts: Point[] = [{ x: x1, y: y1 }];
+      for (let i = 1; i < segs; i++) {
+        const t = i / segs;
+        pts.push({
+          x: x1 + (x2 - x1) * t + (Math.random() - 0.5) * jitter,
+          y: y1 + (y2 - y1) * t + (Math.random() - 0.5) * jitter * 0.35,
+        });
+      }
+      pts.push({ x: x2, y: y2 });
+      return pts;
+    }, []
+  );
+
+  const addBranches = useCallback(
+    (origin: Point, dir: number, len: number, depth: number, branches: Branch[]) => {
+      if (depth > 3 || len < 12) return;
+      const angle = (Math.random() * 0.7 + 0.15) * dir;
+      const ex = origin.x + Math.cos(angle - Math.PI / 4) * len * dir;
+      const ey = origin.y + Math.sin(Math.PI / 4 + Math.abs(angle)) * len;
+      const pts = createPoints(origin.x, origin.y, ex, ey, 3 + Math.floor(Math.random() * 3), len * 0.35);
+      const w = Math.max(0.4, 2.2 - depth * 0.55);
+      const op = Math.max(0.1, 0.55 - depth * 0.13);
+      branches.push({ points: pts, width: w, opacity: op });
+
+      // Recursive sub-branches
+      for (let i = 0; i < pts.length - 1; i++) {
+        if (Math.random() > 0.55) {
+          addBranches(pts[i], Math.random() > 0.5 ? 1 : -1, len * (0.35 + Math.random() * 0.3), depth + 1, branches);
+        }
+      }
+    }, [createPoints]
+  );
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let raf: number;
+    let bolts: Bolt[] = [];
+    let sparks: Spark[] = [];
+    let flashAlpha = 0;
+    let nextBolt = 800;
+    let lastTime = 0;
+    let dpr = 1;
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.offsetWidth * dpr;
+      canvas.height = canvas.offsetHeight * dpr;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const createBolt = (): Bolt => {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      const sx = w * (0.15 + Math.random() * 0.7);
+      const sy = -5;
+      const ex = sx + (Math.random() - 0.5) * w * 0.4;
+      const ey = h * (0.6 + Math.random() * 0.4);
+      const mainPts = createPoints(sx, sy, ex, ey, 14 + Math.floor(Math.random() * 10), w * 0.1);
+      const branches: Branch[] = [{ points: mainPts, width: 2.8, opacity: 0.9 }];
+
+      // Generate many branches
+      for (let i = 2; i < mainPts.length - 1; i++) {
+        if (Math.random() > 0.3) {
+          const dir = Math.random() > 0.5 ? 1 : -1;
+          const len = w * (0.04 + Math.random() * 0.1);
+          addBranches(mainPts[i], dir, len, 0, branches);
+        }
+      }
+
+      // Spawn sparks at endpoints
+      branches.forEach((b) => {
+        const last = b.points[b.points.length - 1];
+        const count = Math.floor(Math.random() * 4);
+        for (let s = 0; s < count; s++) {
+          sparks.push({
+            x: last.x, y: last.y,
+            vx: (Math.random() - 0.5) * 2.5,
+            vy: Math.random() * -1.5 - 0.5,
+            life: 0, maxLife: 300 + Math.random() * 500,
+            size: 0.8 + Math.random() * 1.5,
+          });
+        }
+      });
+
+      return { branches, birth: performance.now(), fadeIn: 60, hold: 80 + Math.random() * 120, fadeOut: 250 + Math.random() * 200 };
+    };
+
+    const drawPath = (pts: Point[], width: number, color: string, blur: number) => {
+      if (pts.length < 2) return;
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x * dpr, pts[0].y * dpr);
+      for (let i = 1; i < pts.length; i++) {
+        const prev = pts[i - 1];
+        const cur = pts[i];
+        const mx = (prev.x + cur.x) / 2;
+        const my = (prev.y + cur.y) / 2;
+        ctx.quadraticCurveTo(prev.x * dpr, prev.y * dpr, mx * dpr, my * dpr);
+      }
+      const last = pts[pts.length - 1];
+      ctx.lineTo(last.x * dpr, last.y * dpr);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width * dpr;
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.filter = blur > 0 ? `blur(${blur * dpr}px)` : "none";
+      ctx.stroke();
+    };
+
+    const animate = (time: number) => {
+      const dt = lastTime ? time - lastTime : 16;
+      lastTime = time;
+      const w = canvas.width;
+      const h = canvas.height;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.filter = "none";
+
+      // Flash
+      if (flashAlpha > 0.005) {
+        ctx.fillStyle = `rgba(120,170,255,${flashAlpha * 0.08})`;
+        ctx.fillRect(0, 0, w, h);
+        flashAlpha *= 0.88;
+      }
+
+      // Spawn
+      nextBolt -= dt;
+      if (nextBolt <= 0) {
+        bolts.push(createBolt());
+        if (Math.random() > 0.4) {
+          setTimeout(() => { bolts.push(createBolt()); flashAlpha = Math.min(flashAlpha + 0.5, 1); }, 50 + Math.random() * 100);
+        }
+        flashAlpha = 1;
+        nextBolt = 1800 + Math.random() * 4000;
+      }
+
+      // Draw bolts
+      bolts = bolts.filter((bolt) => {
+        const age = time - bolt.birth;
+        const total = bolt.fadeIn + bolt.hold + bolt.fadeOut;
+        if (age > total) return false;
+
+        let alpha: number;
+        if (age < bolt.fadeIn) alpha = age / bolt.fadeIn;
+        else if (age < bolt.fadeIn + bolt.hold) alpha = 1;
+        else alpha = 1 - (age - bolt.fadeIn - bolt.hold) / bolt.fadeOut;
+
+        const flicker = 0.75 + Math.random() * 0.25;
+        const a = Math.max(0, alpha * flicker);
+
+        bolt.branches.forEach((b) => {
+          // Outer glow
+          drawPath(b.points, b.width * 12, `hsla(217,91%,60%,${a * b.opacity * 0.15})`, 18);
+          // Mid glow
+          drawPath(b.points, b.width * 4, `hsla(210,85%,68%,${a * b.opacity * 0.4})`, 6);
+          // Core - bright white-blue
+          drawPath(b.points, b.width, `hsla(200,95%,88%,${a * b.opacity * 0.95})`, 0);
+        });
+        return true;
+      });
+
+      // Draw sparks
+      ctx.filter = "none";
+      sparks = sparks.filter((s) => {
+        s.life += dt;
+        if (s.life > s.maxLife) return false;
+        s.x += s.vx;
+        s.y += s.vy;
+        s.vy += 0.03; // gravity
+        const a = 1 - s.life / s.maxLife;
+        const r = s.size * dpr;
+
+        ctx.beginPath();
+        ctx.arc(s.x * dpr, s.y * dpr, r * 2, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(217,91%,60%,${a * 0.3})`;
+        ctx.filter = `blur(${3 * dpr}px)`;
+        ctx.fill();
+
+        ctx.filter = "none";
+        ctx.beginPath();
+        ctx.arc(s.x * dpr, s.y * dpr, r, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(200,90%,85%,${a * 0.8})`;
+        ctx.fill();
+        return true;
+      });
+
+      raf = requestAnimationFrame(animate);
+    };
+
+    // Initial bolt on load
+    bolts.push(createBolt());
+    flashAlpha = 1;
+    nextBolt = 1500 + Math.random() * 2000;
+    raf = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    };
+  }, [createPoints, addBranches]);
+
   return (
-    <svg
+    <canvas
+      ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none z-0"
-      viewBox="0 0 1400 900"
-      preserveAspectRatio="xMaxYMin meet"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <filter id="lg-heavy">
-          <feGaussianBlur stdDeviation="12" result="b1" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b2" />
-          <feMerge><feMergeNode in="b1" /><feMergeNode in="b2" /></feMerge>
-        </filter>
-        <filter id="lg-soft"><feGaussianBlur stdDeviation="25" /></filter>
-        <filter id="lg-mid"><feGaussianBlur stdDeviation="6" /></filter>
-        <linearGradient id="bg-main" x1="1" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="hsl(217, 91%, 70%)" stopOpacity="0.9" />
-          <stop offset="40%" stopColor="hsl(210, 85%, 65%)" stopOpacity="0.7" />
-          <stop offset="100%" stopColor="hsl(200, 80%, 55%)" stopOpacity="0.3" />
-        </linearGradient>
-        <linearGradient id="bg-br" x1="1" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="hsl(217, 91%, 60%)" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="hsl(200, 80%, 55%)" stopOpacity="0.1" />
-        </linearGradient>
-      </defs>
-
-      {/* All lightning shifted to top-right quadrant: x ~900-1350, y ~20-500 */}
-
-      {/* Ambient glow */}
-      <path
-        d="M1320 20 Q1290 60 1265 100 Q1245 135 1225 165 Q1200 205 1175 240 Q1155 270 1135 305 Q1115 340 1095 370 Q1070 410 1045 445 Q1030 468 1015 490"
-        fill="none" stroke="hsl(217, 91%, 60%)" strokeWidth="35" filter="url(#lg-soft)" opacity="0.18"
-      />
-
-      {/* Main bolt */}
-      <path
-        d="M1320 20 Q1292 58 1268 98 Q1248 132 1228 163 Q1203 203 1178 238 Q1158 268 1138 303 Q1118 338 1098 368 Q1073 408 1048 443 Q1033 466 1018 488"
-        fill="none" stroke="url(#bg-main)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" filter="url(#lg-heavy)" opacity="0.75"
-      />
-
-      {/* Branch 1 - top */}
-      <path d="M1292 58 Q1270 45 1255 58 Q1240 70 1225 62" fill="none" stroke="url(#bg-br)" strokeWidth="2" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.5" />
-      <path d="M1255 58 Q1245 48 1235 52" fill="none" stroke="url(#bg-br)" strokeWidth="1.2" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.3" />
-      <path d="M1255 58 Q1250 70 1238 76" fill="none" stroke="url(#bg-br)" strokeWidth="1" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.25" />
-
-      {/* Branch 2 - upper right */}
-      <path d="M1268 98 Q1290 110 1300 135 Q1308 155 1325 162" fill="none" stroke="url(#bg-br)" strokeWidth="1.8" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.45" />
-      <path d="M1300 135 Q1312 130 1318 138" fill="none" stroke="url(#bg-br)" strokeWidth="1" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.22" />
-
-      {/* Branch 3 - upper left */}
-      <path d="M1228 163 Q1200 150 1185 158 Q1170 165 1155 155" fill="none" stroke="url(#bg-br)" strokeWidth="2" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.5" />
-      <path d="M1185 158 Q1175 148 1165 152" fill="none" stroke="url(#bg-br)" strokeWidth="1.1" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.28" />
-      <path d="M1185 158 Q1182 170 1172 175" fill="none" stroke="url(#bg-br)" strokeWidth="0.9" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.22" />
-
-      {/* Branch 4 - mid right */}
-      <path d="M1178 238 Q1200 250 1210 275 Q1218 295 1235 305" fill="none" stroke="url(#bg-br)" strokeWidth="1.8" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.42" />
-      <path d="M1210 275 Q1222 270 1228 278" fill="none" stroke="url(#bg-br)" strokeWidth="1" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.22" />
-      <path d="M1210 275 Q1208 290 1220 298" fill="none" stroke="url(#bg-br)" strokeWidth="0.8" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.2" />
-
-      {/* Branch 5 - mid left, long */}
-      <path d="M1158 268 Q1130 255 1115 262 Q1100 270 1085 258 Q1072 248 1058 255" fill="none" stroke="url(#bg-br)" strokeWidth="2" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.48" />
-      <path d="M1115 262 Q1105 252 1095 258" fill="none" stroke="url(#bg-br)" strokeWidth="1.1" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.28" />
-      <path d="M1085 258 Q1078 270 1065 275" fill="none" stroke="url(#bg-br)" strokeWidth="0.9" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.22" />
-      <path d="M1115 262 Q1110 278 1098 282" fill="none" stroke="url(#bg-br)" strokeWidth="0.8" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.2" />
-
-      {/* Branch 6 - mid-lower right */}
-      <path d="M1138 303 Q1158 318 1165 345 Q1170 365 1185 375" fill="none" stroke="url(#bg-br)" strokeWidth="1.6" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.38" />
-      <path d="M1165 345 Q1178 340 1182 350" fill="none" stroke="url(#bg-br)" strokeWidth="0.9" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.2" />
-
-      {/* Branch 7 - lower left */}
-      <path d="M1098 368 Q1075 355 1060 362 Q1045 370 1030 358 Q1018 348 1005 355" fill="none" stroke="url(#bg-br)" strokeWidth="1.8" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.4" />
-      <path d="M1060 362 Q1052 352 1042 358" fill="none" stroke="url(#bg-br)" strokeWidth="1" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.25" />
-      <path d="M1030 358 Q1022 368 1012 365" fill="none" stroke="url(#bg-br)" strokeWidth="0.8" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.18" />
-      <path d="M1060 362 Q1058 378 1045 382" fill="none" stroke="url(#bg-br)" strokeWidth="0.9" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.2" />
-
-      {/* Branch 8 - lower right */}
-      <path d="M1098 368 Q1118 385 1122 410 Q1125 430 1140 440" fill="none" stroke="url(#bg-br)" strokeWidth="1.5" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.32" />
-
-      {/* Branch 9 - bottom left */}
-      <path d="M1048 443 Q1030 432 1018 440 Q1005 448 992 438" fill="none" stroke="url(#bg-br)" strokeWidth="1.6" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.35" />
-      <path d="M1018 440 Q1010 432 1000 436" fill="none" stroke="url(#bg-br)" strokeWidth="0.9" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.2" />
-
-      {/* Branch 10 - bottom right */}
-      <path d="M1048 443 Q1062 458 1060 478 Q1058 492 1068 502" fill="none" stroke="url(#bg-br)" strokeWidth="1.4" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.3" />
-      <path d="M1060 478 Q1072 475 1078 482" fill="none" stroke="url(#bg-br)" strokeWidth="0.8" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.18" />
-
-      {/* Secondary bolt */}
-      <path
-        d="M1300 35 Q1278 72 1258 115 Q1240 150 1222 190 Q1200 235 1180 275 Q1162 310 1142 348 Q1120 390 1100 425 Q1085 452 1068 478"
-        fill="none" stroke="url(#bg-br)" strokeWidth="1.8" strokeLinecap="round" filter="url(#lg-heavy)" opacity="0.28"
-      />
-      <path d="M1258 115 Q1240 105 1228 112 Q1218 120 1205 112" fill="none" stroke="url(#bg-br)" strokeWidth="1.2" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.22" />
-      <path d="M1222 190 Q1240 200 1248 222" fill="none" stroke="url(#bg-br)" strokeWidth="1" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.2" />
-      <path d="M1142 348 Q1122 338 1110 345 Q1100 352 1088 342" fill="none" stroke="url(#bg-br)" strokeWidth="1.1" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.2" />
-      <path d="M1180 275 Q1162 265 1150 272" fill="none" stroke="url(#bg-br)" strokeWidth="1" strokeLinecap="round" filter="url(#lg-mid)" opacity="0.18" />
-    </svg>
+    />
   );
 };
 
