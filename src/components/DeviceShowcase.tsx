@@ -97,7 +97,7 @@ const DeviceShowcase = () => {
                 <img
                   src={project.phone}
                   alt={`${project.name} mobiel`}
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </div>
