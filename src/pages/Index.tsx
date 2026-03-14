@@ -53,13 +53,7 @@ const Index = () => {
     <main>
       {/* Hero */}
       <section className="relative px-6 pt-36 pb-28 md:px-12 md:pt-44 md:pb-32 lg:px-24 lg:pt-52 lg:pb-36">
-        {/* Page-wide jet animation */}
-        <div className="fixed inset-0 pointer-events-none z-20 overflow-hidden" aria-hidden="true">
-          <div className="jet-flight">
-            <div className="jet-trail" />
-            <JetSvg />
-          </div>
-        </div>
+
 
         <div className="container-narrow relative">
           <AnimatedSection delay={0.1}>
@@ -68,6 +62,13 @@ const Index = () => {
               <span className="text-gradient">{t("index.hero.highlight")}</span>
               {t("index.hero.title2")}
             </h1>
+            {/* Jet lands here after fly-in */}
+            <div className="relative mt-6 h-14 pointer-events-none" aria-hidden="true">
+              <div className="jet-flyin">
+                <div className="jet-trail" />
+                <JetSvg />
+              </div>
+            </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
