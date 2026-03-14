@@ -1,21 +1,9 @@
-import { useState } from "react";
 import AnimatedSection from "@/components/AnimatedSection";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-
-import plumberSite from "@/assets/portfolio/plumber-site.jpg";
-import massageSite from "@/assets/portfolio/massage-site.jpg";
-import advisorSite from "@/assets/portfolio/advisor-site.jpg";
+import DeviceShowcase from "@/components/DeviceShowcase";
 
 const Portfolio = () => {
   const { t } = useLanguage();
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
-
-  const projects = [
-    { nameKey: "portfolio.p1.name", catKey: "portfolio.p1.cat", image: plumberSite },
-    { nameKey: "portfolio.p2.name", catKey: "portfolio.p2.cat", image: massageSite },
-    { nameKey: "portfolio.p3.name", catKey: "portfolio.p3.cat", image: advisorSite },
-  ];
 
   return (
     <main>
@@ -31,62 +19,12 @@ const Portfolio = () => {
               {t("portfolio.desc")}
             </p>
           </AnimatedSection>
-
-          <AnimatedSection delay={0.15} className="mt-10">
-            <p className="text-xl md:text-2xl font-heading font-semibold text-center text-foreground">
-              {t("portfolio.tagline")}
-            </p>
-          </AnimatedSection>
-
-          <div className="mt-12 grid md:grid-cols-3 gap-8">
-            {projects.map((project, i) => {
-              const name = t(project.nameKey);
-              return (
-                <AnimatedSection key={project.nameKey} delay={i * 0.1}>
-                  <button
-                    onClick={() => setSelectedProject(i)}
-                    className="group w-full text-left rounded-2xl border border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30 focus:outline-none focus:ring-2 focus:ring-accent/50"
-                  >
-                    <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-                      <img
-                        src={project.image}
-                        alt={name}
-                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-300" />
-                    </div>
-                    <div className="p-5 text-center">
-                      <h3 className="text-lg font-heading font-semibold">{name}</h3>
-                      <p className="text-sm text-muted-foreground mt-1">{t(project.catKey)}</p>
-                    </div>
-                  </button>
-                </AnimatedSection>
-              );
-            })}
-          </div>
         </div>
       </section>
 
-      <Dialog open={selectedProject !== null} onOpenChange={() => setSelectedProject(null)}>
-        <DialogContent className="max-w-5xl w-[95vw] p-0 overflow-hidden">
-          {selectedProject !== null && (
-            <div>
-              <div className="max-h-[80vh] overflow-y-auto">
-                <img
-                  src={projects[selectedProject].image}
-                  alt={t(projects[selectedProject].nameKey)}
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="p-6 border-t border-border">
-                <h3 className="text-xl font-heading font-semibold">{t(projects[selectedProject].nameKey)}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{t(projects[selectedProject].catKey)}</p>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
+      <AnimatedSection delay={0.15}>
+        <DeviceShowcase />
+      </AnimatedSection>
     </main>
   );
 };
