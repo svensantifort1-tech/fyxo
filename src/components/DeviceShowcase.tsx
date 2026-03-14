@@ -26,7 +26,7 @@ const DeviceShowcase = () => {
           <div className="relative z-10 w-[65%] max-w-[620px]">
             <div className="bg-[hsl(var(--foreground)/0.9)] rounded-t-xl p-[3px] md:p-[5px]">
               <div className="rounded-t-lg overflow-hidden bg-muted aspect-[16/10]">
-                <img src={desktopImg} alt="Desktop weergave" className="w-full h-full object-cover object-top" />
+                <img src={desktopImg} alt="Desktop weergave" className="w-full h-full object-cover object-center" />
               </div>
             </div>
             <div className="h-3 md:h-4 bg-gradient-to-b from-[hsl(var(--foreground)/0.85)] to-[hsl(var(--foreground)/0.7)] rounded-b-md" />
@@ -37,7 +37,7 @@ const DeviceShowcase = () => {
           <div className="absolute right-[4%] md:right-[8%] bottom-0 z-20 w-[28%] max-w-[240px]">
             <div className="bg-[hsl(var(--foreground)/0.9)] rounded-xl p-[3px] md:p-[4px]">
               <div className="rounded-lg overflow-hidden bg-muted aspect-[3/4]">
-                <img src={tabletImg} alt="Tablet weergave" className="w-full h-full object-cover object-top" />
+                <img src={tabletImg} alt="Tablet weergave" className="w-full h-full object-cover object-center" />
               </div>
             </div>
           </div>
@@ -47,7 +47,7 @@ const DeviceShowcase = () => {
             <div className="bg-[hsl(var(--foreground)/0.9)] rounded-xl p-[2px] md:p-[3px]">
               <div className="relative rounded-[10px] md:rounded-xl overflow-hidden bg-muted aspect-[9/19]">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40%] h-[4%] bg-[hsl(var(--foreground)/0.9)] rounded-b-lg z-10" />
-                <img src={phoneImg} alt="Mobiele weergave" className="w-full h-full object-cover object-top" />
+                <img src={phoneImg} alt="Mobiele weergave" className="w-full h-full object-cover object-center" />
               </div>
             </div>
           </div>
