@@ -26,7 +26,7 @@ const DeviceShowcase = () => {
           <div className="relative z-10 w-[65%] max-w-[620px]">
             <div className="bg-[hsl(var(--foreground)/0.9)] rounded-t-xl p-[3px] md:p-[5px]">
               <div className="rounded-t-lg overflow-hidden bg-muted aspect-[16/10]">
-                <img src={desktopImg} alt="Desktop weergave" className="w-full h-full object-cover object-top" />
+                <img src={desktopImg} alt="Desktop weergave" className="w-full h-full object-cover object-center" />
               </div>
             </div>
             <div className="h-3 md:h-4 bg-gradient-to-b from-[hsl(var(--foreground)/0.85)] to-[hsl(var(--foreground)/0.7)] rounded-b-md" />
