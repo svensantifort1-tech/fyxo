@@ -1,35 +1,37 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
-import { Zap, Code, Gauge, ArrowRight } from "lucide-react";
+import { Code, Gauge, ArrowRight, Zap } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { motion } from "framer-motion";
 
-const SpeedLines = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-    {/* Subtle horizontal streaks suggesting motion */}
-    <motion.div
-      initial={{ x: "-100%", opacity: 0 }}
-      whileInView={{ x: "200%", opacity: [0, 0.15, 0.15, 0] }}
-      viewport={{ once: true }}
-      transition={{ duration: 2, delay: 0.8, ease: "easeOut" }}
-      className="absolute top-[22%] left-0 w-48 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent"
+/**
+ * Minimal SVG jet icon — a sleek, modern silhouette.
+ * Rendered as an inline SVG so we can style the trail with CSS gradients.
+ */
+const JetSvg = () => (
+  <svg
+    width="28"
+    height="28"
+    viewBox="0 0 28 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="jet-icon"
+  >
+    {/* Minimal jet silhouette pointing right */}
+    <path
+      d="M4 14L10 10L22 13.5L24 14L22 14.5L10 18L4 14Z"
+      fill="url(#jet-gradient)"
     />
-    <motion.div
-      initial={{ x: "-100%", opacity: 0 }}
-      whileInView={{ x: "200%", opacity: [0, 0.1, 0.1, 0] }}
-      viewport={{ once: true }}
-      transition={{ duration: 2.5, delay: 1, ease: "easeOut" }}
-      className="absolute top-[38%] left-0 w-64 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent"
-    />
-    <motion.div
-      initial={{ x: "-100%", opacity: 0 }}
-      whileInView={{ x: "200%", opacity: [0, 0.08, 0.08, 0] }}
-      viewport={{ once: true }}
-      transition={{ duration: 2.2, delay: 1.2, ease: "easeOut" }}
-      className="absolute top-[55%] left-0 w-40 h-[1px] bg-gradient-to-r from-transparent via-accent to-transparent"
-    />
-  </div>
+    {/* Tail fins */}
+    <path d="M6 14L10 8L11 10L6 14Z" fill="url(#jet-gradient)" opacity="0.7" />
+    <path d="M6 14L10 20L11 18L6 14Z" fill="url(#jet-gradient)" opacity="0.7" />
+    <defs>
+      <linearGradient id="jet-gradient" x1="4" y1="14" x2="24" y2="14" gradientUnits="userSpaceOnUse">
+        <stop stopColor="hsl(217 91% 60%)" />
+        <stop offset="1" stopColor="hsl(200 80% 55%)" />
+      </linearGradient>
+    </defs>
+  </svg>
 );
 
 const Index = () => {
@@ -51,21 +53,25 @@ const Index = () => {
     <main>
       {/* Hero */}
       <section className="relative px-6 pt-36 pb-28 md:px-12 md:pt-44 md:pb-32 lg:px-24 lg:pt-52 lg:pb-36">
-        <SpeedLines />
         <div className="container-narrow relative">
-          <AnimatedSection>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm text-muted-foreground">
-              <Zap className="w-3.5 h-3.5 text-accent" />
-              {t("index.badge")}
-            </div>
-          </AnimatedSection>
-
+          {/* Headline with jet animation */}
           <AnimatedSection delay={0.1}>
-            <h1 className="mt-8 text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
-              {t("index.hero.title1")}
-              <span className="text-gradient">{t("index.hero.highlight")}</span>
-              {t("index.hero.title2")}
-            </h1>
+            <div className="relative hero-jet-container">
+              {/* Jet + trail animation layer — behind text */}
+              <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+                <div className="jet-flight">
+                  {/* Motion trail */}
+                  <div className="jet-trail" />
+                  <JetSvg />
+                </div>
+              </div>
+
+              <h1 className="relative z-10 text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.1] max-w-4xl">
+                {t("index.hero.title1")}
+                <span className="text-gradient">{t("index.hero.highlight")}</span>
+                {t("index.hero.title2")}
+              </h1>
+            </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2}>
@@ -125,7 +131,6 @@ const Index = () => {
             {features.map((feature, i) => (
               <AnimatedSection key={feature.title} delay={i * 0.1}>
                 <div className="group relative rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:shadow-[var(--card-shadow-hover)] hover:border-accent/30 overflow-hidden">
-                  {/* Subtle speed accent — a tiny gradient streak at the top */}
                   <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6">
                     <feature.icon className="w-6 h-6 text-accent" />
